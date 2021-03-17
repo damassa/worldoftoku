@@ -1,18 +1,42 @@
 import React from 'react';
-import Header from '../../header';
 import { Grid } from '@material-ui/core';
+import Image from '../../../assets/undraw_horror_movie_3988.svg';
 
-// import { Container } from './styles';
+import useStyles from './styles';
 
-function Home() {
+const Home = () => {
+  const classes = useStyles();
+
   return (
-    <Grid container>
+    <Grid container className={classes.homeContainer}>
       <Grid item xs={12}>
-        <Header />
-        <h1>Home Page</h1>
+        <Grid container justify="center">
+          <Grid item xs={10}>
+            <Grid container justify="space-between">
+              <Grid item xs={6}>
+                <Grid container>
+                  <Grid item xs={12} className={classes.homeContainerLeft}>
+                    <h1>
+                      Descubra as séries de ação mais famosas e mais nostáligas
+                      que passam no Japão e no Brasil
+                    </h1>
+                    <p>
+                      Tokuflix tenta trazer os clássicos japoneses de Tokusatsu
+                      para você.
+                    </p>
+                    <button>Todas as séries</button>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={6} className={classes.homeImage}>
+                <img src={Image} alt="Site" />
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );
-}
+};
 
 export default Home;

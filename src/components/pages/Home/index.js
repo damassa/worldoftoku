@@ -13,12 +13,12 @@ const Home = () => {
         <Grid container justify="center">
           <Grid item xs={10}>
             <Grid container justify="space-between">
-              <Grid item xs={6}>
+              <Grid item xs={7}>
                 <Grid container>
                   <Grid item xs={12} className={classes.homeContainerLeft}>
                     <h1>
                       Descubra as séries de ação mais famosas e mais nostáligas
-                      que passam no Japão e no Brasil
+                      que passam na televisão
                     </h1>
                     <p>
                       Tokuflix tenta trazer os clássicos japoneses de Tokusatsu
@@ -28,7 +28,7 @@ const Home = () => {
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid item xs={6} className={classes.homeImage}>
+              <Grid item xs={5} className={classes.homeImage}>
                 <img src={Image} alt="Site" />
               </Grid>
             </Grid>

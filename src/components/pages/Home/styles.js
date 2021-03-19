@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   homeContainer: {
-    backgroundColor: '#FAEAFF',
+    backgroundColor: '#E3DFEA',
     padding: '40px 0 50px 0',
   },
   homeContainerLeft: {
@@ -15,14 +15,19 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: 10,
       cursor: 'pointer',
       marginTop: 20,
-      border: '1px solid',
-      backgroundColor: '#D85956',
+      border: 'none',
+      backgroundColor: '#D62846',
+      transition: '.2s',
       color: '#FAEAFF',
+      '&:hover': {
+        backgroundColor: '#C6223F',
+        transition: '.2s',
+      },
     },
   },
   homeImage: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-evenly',
     '& img': {
       width: '70%',
     },

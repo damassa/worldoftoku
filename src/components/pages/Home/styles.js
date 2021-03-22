@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   homeContainer: {
     backgroundColor: '#E3DFEA',
-    padding: '40px 0 50px 0',
+    padding: '30px 0 50px 0',
   },
   homeContainerLeft: {
     padding: '40px 0 30px 0',
@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
     '& img': {
       width: '70%',
     },
+  },
+  homeTitle: {
+    padding: '40px 0 20px 0',
   },
 }));
 

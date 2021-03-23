@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   homeContainer: {
     backgroundColor: '#E3DFEA',
-    padding: '30px 0 50px 0',
+    padding: '20px 0 50px 0',
   },
   homeContainerLeft: {
     padding: '40px 0 30px 0',
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   homeTitle: {
-    padding: '40px 0 20px 0',
+    padding: '60px 0 20px 0',
   },
 }));
 

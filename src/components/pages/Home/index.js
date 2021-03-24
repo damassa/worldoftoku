@@ -13,10 +13,10 @@ const Home = () => {
       <Grid item xs={12}>
         <Grid container justify="center">
           <Grid item xs={10}>
-            <Grid container justify="space-between">
-              <Grid item xs={7}>
-                <Grid container>
-                  <Grid item xs={12} className={classes.homeContainerLeft}>
+            <Grid container className={classes.homeContent}>
+              <Grid item md={7} sm={12}>
+                <Grid container className={classes.homeContainerLeft}>
+                  <Grid item xs={12}>
                     <h1>
                       Descubra as séries de ação mais famosas e mais nostáligas
                       que passam na televisão
@@ -25,11 +25,13 @@ const Home = () => {
                       Tokuflix tenta trazer os clássicos japoneses de Tokusatsu
                       para você.
                     </p>
-                    <button>Todas as séries</button>
+                    <Grid container className={classes.homeButton}>
+                      <button>Todas as séries</button>
+                    </Grid>
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid item xs={5} className={classes.homeImage}>
+              <Grid item md={5} sm={12} className={classes.homeImage}>
                 <img src={Image} alt="Site" />
               </Grid>
             </Grid>

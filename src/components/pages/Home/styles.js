@@ -5,10 +5,27 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#E3DFEA',
     padding: '20px 0 50px 0',
   },
+  homeContent: {
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column-reverse',
+    },
+  },
   homeContainerLeft: {
     padding: '40px 0 30px 0',
     '& h1': {
-      fontSize: 38,
+      fontSize: 40,
+      [theme.breakpoints.down('md')]: {
+        fontSize: 30,
+      },
+      [theme.breakpoints.down('sm')]: {
+        textAlign: 'center',
+      },
+    },
+    '& p': {
+      fontSize: 20,
+      [theme.breakpoints.down('sm')]: {
+        textAlign: 'center',
+      },
     },
     '& button': {
       padding: '10px 20px',
@@ -25,11 +42,19 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  homeButton: {
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'center',
+    },
+  },
   homeImage: {
     display: 'flex',
     justifyContent: 'space-evenly',
     '& img': {
       width: '70%',
+      [theme.breakpoints.down('sm')]: {
+        width: '50%',
+      },
     },
   },
   homeTitle: {

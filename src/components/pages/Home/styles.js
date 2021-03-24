@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   homeContainer: {
     backgroundColor: '#E3DFEA',
-    padding: '20px 0 50px 0',
+    padding: '20px 0 70px 0',
   },
   homeContent: {
     [theme.breakpoints.down('sm')]: {

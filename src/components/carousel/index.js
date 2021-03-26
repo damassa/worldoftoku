@@ -90,6 +90,8 @@ const Carousel = () => {
       <SerieCard />
       <SerieCard />
       <SerieCard />
+      <SerieCard />
+      <SerieCard />
     </Slider>
   );
 };

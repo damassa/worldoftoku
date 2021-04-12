@@ -83,15 +83,6 @@ const Carousel = () => {
   return (
     <Slider {...settings}>
       <SerieCard />
-      <SerieCard />
-      <SerieCard />
-      <SerieCard />
-      <SerieCard />
-      <SerieCard />
-      <SerieCard />
-      <SerieCard />
-      <SerieCard />
-      <SerieCard />
     </Slider>
   );
 };

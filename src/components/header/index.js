@@ -30,6 +30,7 @@ export default function Header() {
               fullWidth
             >
               <OutlinedInput
+                fullWidth
                 className={classes.inputSearch}
                 placeholder="Busque por séries..."
                 endAdornment={

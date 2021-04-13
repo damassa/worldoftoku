@@ -62,16 +62,17 @@ const Carousel = () => {
   var settings = {
     dots: false,
     autoplay: true,
-    autoplaySpeed: 5000,
+    speed: 500,
     slidesToShow: 10,
     slidesToScroll: 2,
+    initialSlide: 0,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
       {
         breakpoint: 3840,
         settings: {
-          slidesToShow: 8,
+          slidesToShow: 10,
         },
       },
       {

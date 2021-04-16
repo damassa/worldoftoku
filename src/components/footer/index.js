@@ -10,7 +10,9 @@ function Footer() {
       <Grid item xs={12}>
         <Grid container justify="center">
           <Grid item xs={10}>
-            <h2>Tokuflix - A plataforma de Tokusatsu online grátis</h2>
+            <h2>
+              World of Tokusatsu - A plataforma de Tokusatsu online grátis
+            </h2>
             <h3>© Todos os direitos reservados.</h3>
           </Grid>
         </Grid>

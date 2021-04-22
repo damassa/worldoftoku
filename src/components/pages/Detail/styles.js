@@ -6,20 +6,34 @@ const useStyles = makeStyles(() => ({
     backgroundSize: '100%',
   },
   DetailCard: {
-    padding: 10,
+    paddingTop: 20,
+    width: '100%',
   },
-  SerieYearCategory: {
-    display: 'flex',
-    padding: '2px 0 40px 0',
+  SerieDetail: {
+    height: 100,
+  },
+  CategoryTag: {
+    height: 100,
     '& strong': {
-      marginRight: 10,
+      cursor: 'pointer',
+      padding: '10px 10px',
+      marginTop: 20,
+      transition: '.2s',
+      borderRadius: 10,
+      backgroundColor: '#D62846',
+      color: '#FAEAFF',
+      fontSize: 12,
     },
   },
   SeriePlot: {
-    display: 'flex',
-    alignItems: 'flex-start',
     minHeight: 120,
     padding: '0 0 30px 0',
+  },
+  DetailInfo: {
+    paddingTop: 20,
+  },
+  OpeningVideo: {
+    width: '100%',
   },
 }));
 

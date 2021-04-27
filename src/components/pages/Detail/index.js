@@ -3,8 +3,6 @@ import { Grid } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 
-import Changeman from '../../../assets/changeman.jpg';
-
 import useStyles from './styles';
 
 const Detail = (props) => {

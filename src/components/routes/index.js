@@ -32,7 +32,7 @@ const Routes = () => (
     >
       <Switch>
         <PrivateRoute path="/" exact component={Home} />
-        <PrivateRoute path="/Detail" exact component={Detail} />
+        <PrivateRoute path="/Detail/:id" exact component={Detail} />
         <Route path="/login" exact component={Login} />
       </Switch>
     </div>

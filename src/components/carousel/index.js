@@ -55,8 +55,8 @@ const Carousel = () => {
       });
   }, []);
 
-  function handleSerieDetail() {
-    history.push('/Detail');
+  function handleSerieDetail(id) {
+    history.push('/Detail/' + id);
   }
 
   var settings = {
@@ -109,7 +109,7 @@ const Carousel = () => {
           key={serie.id}
           container
           justify="center"
-          onClick={handleSerieDetail}
+          onClick={() => handleSerieDetail(serie.id)}
         >
           <Grid item xs={12} className={classes.card}>
             <img src={serie.imageCard} alt="Serie" title={serie.name} />

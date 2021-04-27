@@ -1,36 +1,53 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
-  detailWrapper: {
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: '100%',
+const useStyles = makeStyles((theme) => ({
+  DetailWrapper: {
+    padding: '20px 0 50px 0',
   },
-  DetailCard: {
-    paddingTop: 20,
-    width: '100%',
+  DetailContent: {
+    [theme.breakpoints.down('md')]: {
+      justifyContent: 'center',
+    },
+  },
+  DetailImage: {
+    '& img': {
+      maxWidth: '100%',
+      maxHeight: '100%',
+    },
   },
   SerieDetail: {
-    height: 100,
+    [theme.breakpoints.down('md')]: {
+      textAlign: 'center',
+    },
+    '& h1': {
+      fontSize: 24,
+    },
+    '& h2': {
+      fontSize: 18,
+    },
   },
   CategoryTag: {
     height: 100,
-    '& strong': {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    [theme.breakpoints.down('md')]: {
+      justifyContent: 'space-evenly',
+    },
+    '& div': {
+      marginRight: 5,
       cursor: 'pointer',
       padding: '10px 10px',
-      marginTop: 20,
       transition: '.2s',
       borderRadius: 10,
       backgroundColor: '#D62846',
       color: '#FAEAFF',
       fontSize: 12,
+      height: 'min-content',
     },
   },
   SeriePlot: {
     minHeight: 120,
     padding: '0 0 30px 0',
-  },
-  DetailInfo: {
-    paddingTop: 20,
   },
   OpeningVideo: {
     width: '100%',

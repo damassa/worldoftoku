@@ -48,6 +48,16 @@ const useStyles = makeStyles((theme) => ({
   SeriePlot: {
     minHeight: 120,
     padding: '0 0 30px 0',
+    '& h2': {
+      [theme.breakpoints.down('sm')]: {
+        textAlign: 'center',
+      },
+    },
+    '& p': {
+      [theme.breakpoints.down('sm')]: {
+        textAlign: 'justify',
+      },
+    },
   },
   OpeningVideo: {
     width: '100%',

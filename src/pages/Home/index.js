@@ -18,7 +18,7 @@ const Home = () => {
                 <Grid container className={classes.homeContainerLeft}>
                   <Grid item xs={12}>
                     <h1>
-                      Descubra as séries de ação mais famosas e mais nostáligas
+                      Descubra as séries de ação mais famosas e mais nostálgicas
                       que passam na televisão
                     </h1>
                     <p>

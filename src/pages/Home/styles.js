@@ -33,11 +33,11 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
       marginTop: 20,
       border: 'none',
-      backgroundColor: '#D62846',
+      backgroundColor: '#66569a',
       transition: '.2s',
       color: '#FAEAFF',
       '&:hover': {
-        backgroundColor: '#C6223F',
+        backgroundColor: '#9683cb',
         transition: '.2s',
       },
     },

@@ -1,4 +1,5 @@
 import React from 'react';
+import FormUser from '../../components/formUser';
 
 import { Grid } from '@material-ui/core';
 
@@ -14,7 +15,7 @@ function User() {
           <Grid item xs={10}>
             <Grid container className={classes.UserPanel}>
               <Grid item xs={12}>
-                Form
+                <FormUser />
               </Grid>
             </Grid>
           </Grid>

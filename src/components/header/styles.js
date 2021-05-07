@@ -28,6 +28,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
+    cursor: 'pointer',
   },
 }));
 

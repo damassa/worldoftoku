@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
       padding: '10px 10px',
       transition: '.2s',
       borderRadius: 10,
-      backgroundColor: '#D62846',
+      backgroundColor: '#66569a',
       color: '#FAEAFF',
       fontSize: 12,
       height: 'min-content',

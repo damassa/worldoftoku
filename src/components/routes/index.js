@@ -2,8 +2,9 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { isAuthenticated } from './auth';
 
-import Home from '../pages/Home';
-import Detail from '../pages/Detail';
+import Home from '../../pages/Home';
+import Detail from '../../pages/Detail';
+import User from '../../pages/User';
 
 /* eslint-disable react/prop-types */
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -33,6 +34,7 @@ const Routes = () => (
       <Switch>
         <PrivateRoute path="/" exact component={Home} />
         <PrivateRoute path="/Detail/:id" exact component={Detail} />
+        <PrivateRoute path="/User" exact component={User} />
         <Route path="/login" exact component={Login} />
       </Switch>
     </div>

@@ -1,17 +1,24 @@
 import React from 'react';
 import clsx from 'clsx';
 
+import { useHistory } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 
 import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
+import PersonIcon from '@material-ui/icons/Person';
 
 import useStyles from './styles';
 
 export default function Header() {
   const classes = useStyles();
+  const history = useHistory();
+
+  function handleUser() {
+    history.push('/User');
+  }
 
   return (
     <Grid container justify="center" className={classes.headerBg}>
@@ -41,8 +48,14 @@ export default function Header() {
               />
             </FormControl>
           </Grid>
-          <Grid item xs={1} className={classes.user}>
-            User
+          <Grid
+            item
+            xs={1}
+            className={classes.user}
+            onClick={handleUser}
+            title="Minha conta"
+          >
+            <PersonIcon />
           </Grid>
         </Grid>
       </Grid>

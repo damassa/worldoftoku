@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   DetailWrapper: {
-    padding: '20px 0 50px 0',
+    padding: '20px 0 70px 0',
   },
   DetailContent: {
     [theme.breakpoints.down('md')]: {

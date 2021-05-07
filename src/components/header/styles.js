@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   headerBg: {
-    backgroundColor: '#13003D',
+    backgroundColor: '#382D6B',
   },
   headerContainer: {
     height: 100,

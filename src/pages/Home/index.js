@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import Carousel from '../../carousel';
-import Image from '../../../assets/undraw_horror_movie_3988.svg';
+import Carousel from '../../components/carousel';
+import Image from '../../assets/undraw_horror_movie_3988.svg';
 
 import useStyles from './styles';
 

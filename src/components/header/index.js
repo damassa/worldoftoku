@@ -20,7 +20,9 @@ export default function Header() {
       <Grid item xs={10}>
         <Grid container className={classes.headerContainer}>
           <Grid item xs={2} className={classes.logo}>
-            LOGO HERE
+            <Link to="/" style={{ color: '#fff' }}>
+              LOGO
+            </Link>
           </Grid>
           <Grid item xs={6} className={classes.category}>
             Categorias

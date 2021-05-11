@@ -4,9 +4,6 @@ const useStyles = makeStyles(() => ({
   UserWrapper: {
     padding: '20px 0 50px 0',
   },
-  UserPanel: {
-    backgroundColor: 'pink',
-  },
 }));
 
 export default useStyles;

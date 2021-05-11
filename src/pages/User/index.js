@@ -13,7 +13,10 @@ function User() {
       <Grid xs={12}>
         <Grid container justify="center">
           <Grid item xs={10}>
-            <Grid container className={classes.UserPanel}>
+            <Grid container>
+              <Grid item xs={12}>
+                <h1>Altere dados da sua conta!</h1>
+              </Grid>
               <Grid item xs={12}>
                 <FormUser />
               </Grid>

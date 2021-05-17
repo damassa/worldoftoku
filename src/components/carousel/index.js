@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import PropTypes from 'prop-types';
 import { Grid, Hidden } from '@material-ui/core';
@@ -38,7 +38,6 @@ function SamplePrevArrow(props) {
 const Carousel = () => {
   const [data, setData] = useState([]);
   const classes = useStyles();
-  const history = useHistory();
 
   useEffect(() => {
     fetch('http://localhost:3000/data/series.json', {
@@ -54,10 +53,6 @@ const Carousel = () => {
         setData(myJson);
       });
   }, []);
-
-  function handleSerieDetail(id) {
-    history.push('/Detail/' + id);
-  }
 
   var settings = {
     dots: false,
@@ -105,15 +100,12 @@ const Carousel = () => {
   return (
     <Slider {...settings}>
       {data.map((serie) => (
-        <Grid
-          key={serie.id}
-          container
-          justify="center"
-          onClick={() => handleSerieDetail(serie.id)}
-        >
-          <Grid item xs={12} className={classes.card}>
-            <img src={serie.imageCard} alt="Serie" title={serie.name} />
-          </Grid>
+        <Grid key={serie.id} container justify="center">
+          <Link to={`/detail/${serie.id}`}>
+            <Grid item xs={12} className={classes.card}>
+              <img src={serie.imageCard} alt="Serie" title={serie.name} />
+            </Grid>
+          </Link>
         </Grid>
       ))}
     </Slider>

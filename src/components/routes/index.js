@@ -2,8 +2,11 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { isAuthenticated } from './auth';
 
-import Home from '../pages/Home';
-import Detail from '../pages/Detail';
+import Home from '../../pages/Home';
+import Detail from '../../pages/Detail';
+import User from '../../pages/User';
+import Header from '../header';
+import Footer from '../footer';
 
 /* eslint-disable react/prop-types */
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -23,6 +26,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 const Routes = () => (
   <BrowserRouter>
+    <Header />
     <div
       style={{
         width: '100vw',
@@ -32,13 +36,12 @@ const Routes = () => (
     >
       <Switch>
         <PrivateRoute path="/" exact component={Home} />
-        <PrivateRoute path="/Detail/:id" exact component={Detail} />
-        <Route path="/login" exact component={Login} />
+        <PrivateRoute path="/detail/:id" exact component={Detail} />
+        <PrivateRoute path="/user" exact component={User} />
       </Switch>
     </div>
+    <Footer />
   </BrowserRouter>
 );
-
-const Login = () => <h1>Login</h1>;
 
 export default Routes;

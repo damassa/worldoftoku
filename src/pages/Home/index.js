@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import Carousel from '../../carousel';
-import Image from '../../../assets/undraw_horror_movie_3988.svg';
+import Carousel from '../../components/carousel';
+import Image from '../../assets/undraw_horror_movie_3988.svg';
 
 import useStyles from './styles';
 
@@ -18,7 +18,7 @@ const Home = () => {
                 <Grid container className={classes.homeContainerLeft}>
                   <Grid item xs={12}>
                     <h1>
-                      Descubra as séries de ação mais famosas e mais nostáligas
+                      Descubra as séries de ação mais famosas e mais nostálgicas
                       que passam na televisão
                     </h1>
                     <p>

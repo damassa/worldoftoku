@@ -9,6 +9,8 @@ const port = process.env.PORT || '3333';
 app.use(express.json());
 app.use(cors());
 
+mongoose.set('useFindAndModify', false);
+
 mongoose.connect('mongodb://localhost:27017/tokusatsu', {
     useNewUrlParser: true,
     useUnifiedTopology: true,

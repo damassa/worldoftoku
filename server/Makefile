@@ -2,7 +2,7 @@ lint:  ;@echo "Linting ${PROJECT}....."; \
 	./node_modules/.bin/eslint . --fix
 
 run: ;@echo "Starting ${PROJECT}....."; \
-	npm start
+	npm run dev
 
 install: ;@echo "Installing ${PROJECT}....."; \
 	npm install

@@ -2,7 +2,7 @@ const Serie = require('../models/Serie');
 
 module.exports = {
     async list(req, res) {
-        const serie = await Serie.find(req.params);
+        const serie = await Serie.find(req.params).populate('category').sort('year');
         return res.json(serie);
     },
 
@@ -20,7 +20,7 @@ module.exports = {
             year, 
             duration, 
             category 
-            } = req.body;
+        } = req.body;
             
         const serie = await Serie.create({
             name,
@@ -30,14 +30,16 @@ module.exports = {
             year,
             duration,
             category
-        })
+        });
+
         res.json(serie);
     },
 
-    async update(req, res) {
+    async update(req, res, err) {
         const serie = await Serie.findByIdAndUpdate(
-            req.params.id, req.body, {new: true}
+            req.params.id, req.body, { new: true }
         );
+        if(err) { return res.send(err) }
         return res.json(serie);
     },
 

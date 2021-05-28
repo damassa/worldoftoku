@@ -22,12 +22,12 @@ const SerieSchema = new mongoose.Schema({
         required: true,
     },
     duration: {
-        type: String,
+        type: Number,
         required: true,
     },
     category: [{
         type: mongoose.Schema.Types.ObjectId, ref: 'Category'
     }],
-}, {timestamps: true, collection: 'series'});
+}, { timestamps: true, collection: 'series' });
 
 module.exports = mongoose.model('Serie', SerieSchema);

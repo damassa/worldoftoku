@@ -2,7 +2,7 @@ const Category = require('../models/Category');
 
 module.exports = {
     async list(req, res) {
-        const category = await Category.find(req.params);
+        const category = await Category.find(req.params).sort('name');
         return res.json(category);
     },
     
@@ -12,7 +12,8 @@ module.exports = {
     },
 
     async store(req, res) {
-        const category = await Category.create(req.body);
+        const { name } = req.body;
+        const category = await Category.create({name});
         return res.json(category);
     },
 

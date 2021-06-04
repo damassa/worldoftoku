@@ -1,56 +1,100 @@
 const User = require('../models/User');
-const Role = require('../models/Role');
-
-function addRole() {
-    if(!Role.find({ name: 'user' })) {
-        new Role({
-            name: 'user'
-        }).save(err => {
-            err ? console.log(err) : console.log('User role added.');
-        });
-    }
-    if(!Role.find({ name: 'admin' })) {
-        new Role({
-            name: 'admin'
-        }).save(err => {
-            err ? console.log(err) : console.log('admin role added.');
-        });
-    }
-};
-
-addRole();
+const jwt = require('jsonwebtoken');
+const passwordFunctions = require('../utils/password');
+const { roles } = require('../roles');
 
 module.exports = {
-    async showRoles(req, res) {
-        const role = await Role.find(req.params);
-        return res.json(role);
-    },
-
     async list(req, res) {
-        const user = await User.find(req.params).sort('name');
-        return res.json(user);
+        const user = await User.find({}).sort('username');
+        return res.status(200).json(user);
     },
 
-    async show(req, res) {
-        const user = await User.findById(req.params).sort('name');
-        return res.json(user);
+    async getUser(req, res, next) {
+        try {
+            const userId = req.params.userId;
+            const user = await User.findById(userId);
+
+            if(!user) {
+                return next(new Error('Usuário não existe.'));
+            } else {
+                res.status(200).json(user);
+            }
+        } catch(err) {
+            next(err);
+        }
     },
 
-    async register(req, res) {
-        const {
-            username,
-            email,
-            password,
-            role
-        } = req.body;
+    async updateUser(req, res, next) {
+        try {
+            const update = req.body;
+            const userId = req.params.userId;
+            await User.findByIdAndUpdate(userId, update);
+            const user = await User.findById(userId);
+            res.status(200).json({
+                data: user,
+                message: 'Usuário atualizado.'
+            });
+        } catch (err) {
+            next(err);
+        }
+    },
 
-        const user = await User.create({
-            username,
-            email,
-            password,
-            role
-        });
+    async register(req, res, next) {
+        try {
+            const {
+                username,
+                email,
+                password,
+                role
+            } = req.body;
+            const hashedPassword = await passwordFunctions.hashPassword(password);
+            const user = new User({ username, email, password: hashedPassword, role: role || 'user' });
+            const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+                expiresIn: "1d"
+            });
+            user.token = token;
+            await user.save();
+            res.json({
+                data: user,
+                token
+            })
+        } catch(err) {
+            next(err);
+        }
+    },
 
-        return res.json(user);
+    async login(req, res, next) {
+        try {
+            const { username, password } = req.body;
+            const user = await User.findOne({ username });
+
+            if(!user) return next(new Error('Usuário inexistente.'));
+
+            const validPassword = await passwordFunctions.validatePassword(password, user.password);
+
+            if(!validPassword) return next(new Error('Senha incorreta.'));
+            const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+                expiresIn: "1d"
+            });
+            await User.findByIdAndUpdate(user._id, { token });
+            res.status(200).json({
+                data: { username: user.username, role: user.role },
+            });
+        } catch(err) {
+            next(err);
+        }
+    },
+
+    async delete(req, res, next) {
+        try {
+            const userId = req.params.userId;
+            await User.findByIdAndDelete(userId);
+            res.status(200).json({
+                data: null,
+                message: 'Usuário excluído'
+            });
+        } catch(err) {
+            next(err);
+        }
     },
 }

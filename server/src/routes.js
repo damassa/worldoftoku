@@ -4,7 +4,6 @@ const routes = express.Router();
 const SerieController = require('../src/controllers/SerieController');
 const CategoryController = require('../src/controllers/CategoryController');
 const UserController = require('../src/controllers/UserController');
-const RoleController = require('../src/controllers/RoleController');
 
 /* Series Router */ 
 routes.get('/series', SerieController.list);
@@ -22,11 +21,9 @@ routes.delete('/categories/:id', CategoryController.delete);
 
 /* User Router */
 routes.get('/users', UserController.list);
-routes.get('/users/:id', UserController.show);
+routes.get('/users/:id', UserController.getUser);
 routes.post('/users', UserController.register);
-// routes.post('/users', UserController.login);
-// routes.put('/users/:id', UserController.update);
+routes.post('/users', UserController.login);
+routes.put('/users/:id', UserController.updateUser);
 
-/* Roles Router */
-routes.get('/roles', RoleController.showRoles);
 module.exports = routes;

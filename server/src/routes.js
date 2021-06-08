@@ -20,10 +20,11 @@ routes.put('/categories/:id', CategoryController.update);
 routes.delete('/categories/:id', CategoryController.delete);
 
 /* User Router */
-routes.get('/users', UserController.list);
-routes.get('/users/:id', UserController.getUser);
-routes.post('/users', UserController.register);
-routes.post('/users', UserController.login);
-routes.put('/users/:id', UserController.updateUser);
+routes.post('/register', UserController.register);
+routes.post('/login', UserController.login);
+routes.get('/users/:userId', UserController.allowIfLoggedIn, UserController.getUser);
+routes.get('/users', UserController.allowIfLoggedIn, UserController.grantAccess('readAny', 'profile'), UserController.list);
+routes.put('/users/:userId', UserController.allowIfLoggedIn, UserController.grantAccess('updateAny', 'profile'), UserController.update);
+routes.delete('/users/:userId', UserController.allowIfLoggedIn, UserController.grantAccess('deleteAny', 'profile'), UserController.delete);
 
 module.exports = routes;

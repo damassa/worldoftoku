@@ -45,9 +45,9 @@ exports.allowIfLoggedIn = async (req, res, next) => {
 
 exports.register = async (req, res, next) => {
     try {
-        const { username, email, password, role } = req.body;
+        const { email, password, role } = req.body;
         const hashedPassword = await hashPassword(password);
-        const user = new User({ username, email, password: hashedPassword, role: role || "user" });
+        const user = new User({ email, password: hashedPassword, role: role || "user" });
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
             expiresIn: "1d"
         });
@@ -64,8 +64,8 @@ exports.register = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     try {
-        const { username, password } = req.body;
-        const user = await User.findOne({ username });
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
 
         if(!user) return next(new Error('Usuário inexistente.'));
 
@@ -77,7 +77,7 @@ exports.login = async (req, res, next) => {
         });
         await User.findByIdAndUpdate(user._id, { token });
         res.status(200).json({
-            data: { username: user.username, role: user.role },
+            data: { email: user.email, role: user.role },
             token
         });
     } catch(err) {
@@ -86,7 +86,7 @@ exports.login = async (req, res, next) => {
 }
 
 exports.list = async (req, res) => {
-    const user = await User.find({}).sort('username');
+    const user = await User.find({}).sort('email');
     return res.status(200).json({
         data: user
     });

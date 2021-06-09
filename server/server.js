@@ -9,7 +9,7 @@ const routes = require('./src/routes');
 const User = require('./src/models/User');
 
 require("dotenv").config({
-    path: path.join(__dirname, "../.env")
+    path: path.join(__dirname, "./.env")
 });
 
 const app = express();

@@ -30,14 +30,23 @@ exports.grantAccess = function(action, resource) {
 
 exports.allowIfLoggedIn = async (req, res, next) => {
     try {
-        const user = res.locals.loggedInUser;
-        if(!user) {
+        const token = req.headers['x-access-token'];
+        if(!token) {
             return res.status(401).json({
                 error: 'Você precisa logar para ter acesso.'
             });
         }
-        req.user = user;
-        next();
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+            if(err) {
+                return res.status(500).json({
+                    error: 'Falha ao autenticar token.'
+                });
+            }
+            const user = await User.findById(decoded.userId);
+            if(!user) return next(new Error('Usuário não existe.'));
+            req.user = user;
+            next();
+        });
     } catch(err) {
         next(err);
     }
@@ -47,7 +56,7 @@ exports.register = async (req, res, next) => {
     try {
         const { email, password, role } = req.body;
         const hashedPassword = await hashPassword(password);
-        const user = new User({ email, password: hashedPassword, role: role || "user" });
+        const user = new User({ email, password: hashedPassword, role });
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
             expiresIn: "1d"
         });
@@ -85,6 +94,14 @@ exports.login = async (req, res, next) => {
     }
 }
 
+exports.logout = async (req, res, next) => {
+    try {
+        res.json({ auth: false, token: null });
+    } catch(err) {
+        next(err);
+    }
+}
+
 exports.list = async (req, res) => {
     const user = await User.find({}).sort('email');
     return res.status(200).json({
@@ -106,9 +123,15 @@ exports.getUser = async (req, res, next) => {
 
 exports.update = async (req, res, next) => {
     try {
-        const { role } = req.body;
+        const { name, email, password, role } = req.body;
         const userId = req.params.userId;
-        await User.findByIdAndUpdate(userId, role);
+        const hashedPassword = await hashPassword(password);
+        await User.findByIdAndUpdate(userId, { 
+            name, 
+            email, 
+            password: hashedPassword, 
+            role 
+        });
         const user = await User.findById(userId);
         res.status(200).json({
             data: user,
@@ -130,4 +153,18 @@ exports.delete = async (req, res, next) => {
     } catch(err) {
         next(err);
     }
+}
+
+exports.toggleFavorites = async (req, res) => {
+    const { serieId } = req.body;
+    if (req.user.favorites.includes(serieId)) {
+        req.user.favorites.pull(serieId);
+    } else {
+        req.user.favorites.push(serieId);
+    }
+    req.user.save();
+    res.json({
+        favorites: req.user.favorites,
+        message: 'Série adicionada aos favoritos.'
+    });
 }

@@ -22,6 +22,8 @@ routes.delete('/categories/:id', CategoryController.delete);
 /* User Router */
 routes.post('/register', UserController.register);
 routes.post('/login', UserController.login);
+routes.post('/logout', UserController.logout);
+routes.post('/users/favorites', UserController.allowIfLoggedIn, UserController.toggleFavorites);
 routes.get('/users/:userId', UserController.allowIfLoggedIn, UserController.getUser);
 routes.get('/users', UserController.allowIfLoggedIn, UserController.grantAccess('readAny', 'profile'), UserController.list);
 routes.put('/users/:userId', UserController.allowIfLoggedIn, UserController.grantAccess('updateAny', 'profile'), UserController.update);

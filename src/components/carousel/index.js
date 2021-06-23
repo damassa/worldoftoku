@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import PropTypes from 'prop-types';
+import api from '../../services/api';
 import { Grid, Hidden } from '@material-ui/core';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -40,17 +41,13 @@ const Carousel = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    fetch('http://localhost:3000/data/series.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
+    api
+      .get('series')
       .then((response) => {
-        return response.json();
+        setData(response.data);
       })
-      .then((myJson) => {
-        setData(myJson);
+      .catch((error) => {
+        console.log(error);
       });
   }, []);
 
@@ -100,10 +97,10 @@ const Carousel = () => {
   return (
     <Slider {...settings}>
       {data.map((serie) => (
-        <Grid key={serie.id} container justify="center">
-          <Link to={`/detail/${serie.id}`}>
+        <Grid key={serie._id} container justify="center">
+          <Link to={`/detail/${serie._id}`}>
             <Grid item xs={12} className={classes.card}>
-              <img src={serie.imageCard} alt="Serie" title={serie.name} />
+              <img src={serie.image} alt="Serie" title={serie.name} />
             </Grid>
           </Link>
         </Grid>

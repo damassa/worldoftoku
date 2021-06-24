@@ -9,7 +9,7 @@ module.exports = {
   },
 
   async show(req, res) {
-    const serie = await Serie.findById(req.params.id);
+    const serie = await Serie.findById(req.params.id).populate('category');
     return res.json(serie);
   },
 

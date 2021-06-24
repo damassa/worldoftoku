@@ -16,7 +16,6 @@ const Detail = () => {
       .get(`series/${id}`)
       .then((response) => {
         setData(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -40,9 +39,18 @@ const Detail = () => {
                     <h1>{data.name}</h1>
                     <h2>{data.year}</h2>
                     <h4>{data.duration} minutes</h4>
-                    <Grid item xs={12} className={classes.CategoryTag}>
-                      <div>{data.category}</div>
-                    </Grid>
+                    {data.category
+                      ? data.category.map((cat) => (
+                          <Grid
+                            key={cat._id}
+                            item
+                            xs={12}
+                            className={classes.CategoryTag}
+                          >
+                            <div>{cat.name}</div>
+                          </Grid>
+                        ))
+                      : null}
                   </Grid>
                 </Grid>
               </Grid>

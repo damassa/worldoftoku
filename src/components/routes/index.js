@@ -37,7 +37,7 @@ const Routes = () => (
       <Switch>
         <PrivateRoute path="/" exact component={Home} />
         <PrivateRoute path="/detail/:id" exact component={Detail} />
-        <PrivateRoute path="/user" exact component={User} />
+        <PrivateRoute path="/user/:id" exact component={User} />
       </Switch>
     </div>
     <Footer />

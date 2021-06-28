@@ -10,9 +10,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   DetailImage: {
+    [theme.breakpoints.down('md')]: {
+      justifyContent: 'center',
+    },
     '& img': {
       maxWidth: '100%',
-      maxHeight: '100%',
+      maxHeight: 300,
     },
   },
   SerieDetail: {
@@ -24,6 +27,11 @@ const useStyles = makeStyles((theme) => ({
     },
     '& h2': {
       fontSize: 18,
+      fontWeight: 'normal',
+    },
+    '& h4': {
+      fontSize: 14,
+      fontWeight: 'normal',
     },
   },
   CategoryTag: {

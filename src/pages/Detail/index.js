@@ -29,28 +29,24 @@ const Detail = () => {
           <Grid item xs={10}>
             <Grid container className={classes.DetailContent}>
               <Grid item md={4}>
-                <Grid container className={classes.DetailImage}>
-                  <Grid item sm={12} md={8}>
-                    <img src={data.image} alt="Detalhe" title={data.name} />
-                  </Grid>
+                <Grid container sm={12} md={8} className={classes.DetailImage}>
+                  <img src={data.image} alt="Detalhe" title={data.name} />
                 </Grid>
                 <Grid container className={classes.SerieDetail}>
                   <Grid item sm={12} md={8}>
                     <h1>{data.name}</h1>
                     <h2>{data.year}</h2>
                     <h4>{data.duration} minutes</h4>
-                    {data.category
-                      ? data.category.map((cat) => (
-                          <Grid
-                            key={cat._id}
-                            item
-                            xs={12}
-                            className={classes.CategoryTag}
-                          >
-                            <div>{cat.name}</div>
-                          </Grid>
-                        ))
-                      : null}
+                    {data.category?.map((cat) => (
+                      <Grid
+                        key={cat._id}
+                        item
+                        xs={12}
+                        className={classes.CategoryTag}
+                      >
+                        <div>{cat.name}</div>
+                      </Grid>
+                    ))}
                   </Grid>
                 </Grid>
               </Grid>

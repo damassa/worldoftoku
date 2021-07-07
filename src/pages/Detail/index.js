@@ -29,7 +29,7 @@ const Detail = () => {
           <Grid item xs={10}>
             <Grid container className={classes.DetailContent}>
               <Grid item md={4}>
-                <Grid container sm={12} md={8} className={classes.DetailImage}>
+                <Grid container className={classes.DetailImage}>
                   <img src={data.image} alt="Detalhe" title={data.name} />
                 </Grid>
                 <Grid container className={classes.SerieDetail}>

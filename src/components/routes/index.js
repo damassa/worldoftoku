@@ -5,6 +5,7 @@ import { isAuthenticated } from './auth';
 import Home from '../../pages/Home';
 import Detail from '../../pages/Detail';
 import User from '../../pages/User';
+import Register from '../../pages/Register';
 import Header from '../header';
 import Footer from '../footer';
 
@@ -38,6 +39,7 @@ const Routes = () => (
         <PrivateRoute path="/" exact component={Home} />
         <PrivateRoute path="/detail/:id" exact component={Detail} />
         <PrivateRoute path="/user/:id" exact component={User} />
+        <Route path="/register" exact component={Register} />
       </Switch>
     </div>
     <Footer />

@@ -28,13 +28,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 const Routes = () => (
   <BrowserRouter>
     <Header />
-    <div
-      style={{
-        width: '100vw',
-        display: 'flex',
-        flexWrap: 'no-wrap',
-      }}
-    >
+    <div className="wrapper">
       <Switch>
         <PrivateRoute path="/" exact component={Home} />
         <PrivateRoute path="/detail/:id" exact component={Detail} />

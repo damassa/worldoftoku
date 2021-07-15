@@ -8,15 +8,15 @@ function Register() {
   const classes = useStyles();
 
   return (
-    <Grid container>
+    <Grid container className={classes.registerContainer}>
       <Grid item xs={12}>
         <Grid container justify="center">
           <Grid item xs={10}>
-            <Grid container>
-              <Grid item xs={12}>
+            <Grid container justify="center">
+              <Grid item xs={12} className={classes.registerTitle}>
                 <h1>Registre-se!</h1>
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} className={classes.inputWrapper}>
                 <Grid container justify="center">
                   <Grid item xs={12}>
                     <TextField
@@ -75,7 +75,6 @@ function Register() {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid container justify="center"></Grid>
           </Grid>
         </Grid>
       </Grid>

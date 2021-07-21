@@ -1,13 +1,7 @@
 import produce from 'immer';
 
 const initialState = {
-  login: {
-    message: '',
-    active: false,
-    severity: 'error',
-  },
-
-  edit: {
+  snackbar: {
     message: '',
     active: false,
     severity: 'error',
@@ -21,21 +15,21 @@ const initialState = {
  */
 export default function app(state = initialState, action) {
   switch (action.type) {
-    case '@app/LOGIN':
+    case '@app/OPEN_SNACKBAR':
       return produce(state, (draft) => {
-        // draft.snackbar = {
-        //   active: true,
-        //   message: action.message,
-        //   severity: action.severity,
-        // };
+        draft.snackbar = {
+          active: true,
+          message: action.message,
+          severity: action.severity,
+        };
       });
 
-    case '@app/EDIT':
+    case '@app/CLOSE_SNACKBAR':
       return produce(state, (draft) => {
-        // draft.snackbar = {
-        //   ...state.snackbar,
-        //   active: false,
-        // };
+        draft.snackbar = {
+          ...state.snackbar,
+          active: false,
+        };
       });
 
     default:

@@ -1,11 +1,9 @@
-/* LOGIN */
+/* SNACKBAR */
 
-export const Login = (message, severity) => {
-  return { type: '@app/LOGIN', message, severity };
+export const openSnackbar = (message, severity) => {
+  return { type: '@app/OPEN_SNACKBAR', message, severity };
 };
 
-/* EDIT DATA */
-
-export const Edit = (message, severity) => {
-  return { type: '@app/EDIT', message, severity };
+export const closeSnackbar = (message, severity) => {
+  return { type: '@app/OPEN_SNACKBAR' };
 };

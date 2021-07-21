@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import api from '../../services/api';
+import React from 'react';
+// import { useParams } from 'react-router-dom';
+// import api from '../../services/api';
 import { Grid, TextField } from '@material-ui/core';
 
 import useStyles from './styles';
 
 function User() {
   const classes = useStyles();
-  const [data, setData] = useState({});
-  const { id } = useParams();
+  // const [data, setData] = useState({});
+  // const { id } = useParams();
 
-  useEffect(() => {
-    api
-      .get(`users/${id}`)
-      .then((response) => {
-        setData(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [id]);
+  // useEffect(() => {
+  //   api
+  //     .get(`users/${id}`)
+  //     .then((response) => {
+  //       setData(response.data);
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, [id]);
 
   return (
     <Grid container className={classes.UserWrapper}>

@@ -46,7 +46,7 @@ export default function Header() {
             </FormControl>
           </Grid>
           <Grid item xs={1} className={classes.user} title="Minha conta">
-            <Link to={`user/`}>
+            <Link to="/editProfile">
               <PersonIcon style={{ color: '#f6f6f4' }} />
             </Link>
           </Grid>

@@ -22,8 +22,8 @@ const Home = () => {
                       que passam na televisão
                     </h1>
                     <p>
-                      Tokuflix tenta trazer os clássicos japoneses de Tokusatsu
-                      para você.
+                      World of Tokusatsu tenta trazer os clássicos japoneses de
+                      Tokusatsu para você.
                     </p>
                     <Grid container className={classes.homeButton}>
                       <button>Todas as séries</button>

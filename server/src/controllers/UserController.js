@@ -52,6 +52,15 @@ exports.allowIfLoggedIn = async (req, res, next) => {
   }
 };
 
+exports.isLogged = async (req, res) => {
+  const { id, name, email } = req.user;
+  res.json({
+    id,
+    name,
+    email,
+  });
+};
+
 exports.register = async (req, res, next) => {
   try {
     const { name, email, password, role } = req.body;
@@ -86,7 +95,12 @@ exports.login = async (req, res, next) => {
     });
     await User.findByIdAndUpdate(user._id, { token });
     res.status(200).json({
-      data: { email: user.email, role: user.role },
+      data: {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+        name: user.name,
+      },
       token,
     });
   } catch (err) {

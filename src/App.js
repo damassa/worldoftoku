@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Routes from './components/routes';
 
 import { Snackbar, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 
+import api from './services/api';
 import * as AppActions from './store/modules/app/actions.js';
+import { setUserOnStore } from './store/modules/user/actions.js';
 import Alert from '@material-ui/lab/Alert';
 
 import './App.css';
@@ -12,12 +14,33 @@ import './App.css';
 function App() {
   const dispatch = useDispatch();
   const appStates = useSelector((state) => state.app);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  console.log(appStates.snackbar.active);
+  const checkToken = useCallback(() => {
+    api.get('me').then((response) => {
+      const data = response.data;
+      dispatch(
+        setUserOnStore(
+          localStorage.getItem('token'),
+          data.name,
+          data.email,
+          data.id,
+        ),
+      );
+      setIsLoaded(true);
+    });
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      return checkToken();
+    }
+    setIsLoaded(true);
+  }, [checkToken]);
 
   return (
     <div className="App">
-      <Routes />
+      {isLoaded ? <Routes /> : null}
       <Snackbar
         open={appStates.snackbar.active}
         autoHideDuration={8000}

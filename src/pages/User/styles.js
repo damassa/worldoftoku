@@ -4,9 +4,20 @@ const useStyles = makeStyles((theme) => ({
   UserWrapper: {
     padding: '20px 0 50px 0',
   },
+  inputWrapper: {
+    maxWidth: 320,
+  },
+  userTitle: {
+    '& h1': {
+      textAlign: 'center',
+    },
+  },
+  input: {
+    marginTop: 10,
+  },
   formButton: {
     display: 'flex',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     [theme.breakpoints.down('md')]: {
       justifyContent: 'center',
     },

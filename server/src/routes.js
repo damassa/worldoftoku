@@ -33,6 +33,7 @@ routes.get(
   UserController.allowIfLoggedIn,
   UserController.getUser,
 );
+routes.get('/me', UserController.allowIfLoggedIn, UserController.isLogged);
 routes.get(
   '/users',
   UserController.allowIfLoggedIn,

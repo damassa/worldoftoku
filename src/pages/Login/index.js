@@ -1,85 +1,101 @@
 import React from 'react';
-import { Grid, TextField, Button } from '@material-ui/core';
 
+import { useHistory } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { Grid, TextField } from '@material-ui/core';
+
+import api from '../../services/api';
+import * as AppActions from '../../store/modules/app/actions';
+import { setUserOnStore } from '../../store/modules/user/actions';
 import useStyles from './styles';
 
 function Login() {
   const classes = useStyles();
-  // const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
+
+  const handleLogin = (formData) => {
+    api
+      .post('login', formData)
+      .then((response) => {
+        const token = response.data.token;
+        const user = response.data.data;
+        dispatch(AppActions.openSnackbar(`Bem vindo, ${user.name}`, 'success'));
+        dispatch(setUserOnStore(token, user.name, user.email, user.id));
+        localStorage.setItem('token', token);
+        history.push('/');
+      })
+      .catch(() => {
+        dispatch(
+          AppActions.openSnackbar(
+            'Erro ao efetuar login! Tente novamente.',
+            'error',
+          ),
+        );
+      });
+  };
 
   return (
-    <Grid container className={classes.loginWrapper}>
-      <Grid item xs={12}>
+    <Grid container className={classes.loginWrapper} justify="center">
+      <Grid item xs={10}>
         <Grid container justify="center">
-          <Grid item xs={10}>
-            <Grid
-              container
-              justify="center"
-              className={classes.paper}
-              spacing={2}
-            >
-              <Grid item xs={12} className={classes.titleModal}>
-                Login
-              </Grid>
+          <Grid item xs={12} className={classes.loginTitle}>
+            <h1>Login</h1>
+          </Grid>
+          <Grid item xs={12} className={classes.loginContainer}>
+            <form onSubmit={handleSubmit(handleLogin)}>
               <Grid item xs={12}>
                 <TextField
-                  // inputRef={register({
-                  //   required: "Este campo é obrigatório",
-                  //   pattern: {
-                  //     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i,
-                  //     message: "Forneça um e-mail válido",
-                  //   },
-                  // })}
+                  {...register('email', {
+                    required: 'Forneça um e-mail válido',
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i,
+                    },
+                  })}
+                  className={classes.input}
                   variant="outlined"
                   required
-                  // error={!!errors.email}
-                  // helperText={errors.email?.message || false}
+                  error={!!errors.email}
+                  helperText={errors.email?.message || false}
                   name="email"
                   label="E-mail"
                   type="text"
-                  fullWidth
-                  // disabled={loading}
+                  fullwidth="true"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  // inputRef={register({
-                  //   required: "Este campo é obrigatório",
-                  // })}
+                  {...register('password', {
+                    required: 'Este campo é obrigatório',
+                  })}
+                  className={classes.input}
                   variant="outlined"
                   required
-                  // error={!!errors.password}
-                  // helperText={errors.password?.message || false}
-                  name="senha"
+                  error={!!errors.password}
+                  helperText={errors.password?.message || false}
+                  name="password"
                   label="Senha"
                   type="password"
-                  fullWidth
-                  inputProps={{ minLenght: 12 }}
-                  // disabled={loading}
+                  fullwidth="true"
+                  inputProps={{ minlenght: 12 }}
                 />
               </Grid>
               <Grid item xs={12}>
                 <Grid container justify="center" spacing={2}>
-                  <Grid item xs={5}>
-                    <Button
-                      fullWidth
-                      disabled={false}
-                      // onClick={handleSubmit(LogIn, onFormError)}
-                    >
+                  <Grid item xs={12} className={classes.loginFormButton}>
+                    <button fullwidth="true" disabled={false}>
                       Entrar
-                    </Button>
-                  </Grid>
-                  <Grid item xs={5}>
-                    <Button
-                      fullWidth
-                      // onClick={() => dispatch(AppActions.closeLogin())}
-                    >
-                      Cancelar
-                    </Button>
+                    </button>
                   </Grid>
                 </Grid>
               </Grid>
-            </Grid>
+            </form>
           </Grid>
         </Grid>
       </Grid>

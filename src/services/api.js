@@ -7,4 +7,16 @@ const api = axios.create({
   },
 });
 
+axios.defaults.headers.common['Content-Type'] =
+  'application/json;charset=utf-8';
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+
+api.interceptors.request.use(async (config) => {
+  if (localStorage.token) {
+    config.headers['x-access-token'] = localStorage.token;
+  }
+
+  return config;
+});
+
 export default api;

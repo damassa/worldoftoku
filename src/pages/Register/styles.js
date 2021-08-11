@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
   },
   input: {
     marginTop: 10,
+    width: '100%',
   },
   registerFormButton: {
     display: 'flex',

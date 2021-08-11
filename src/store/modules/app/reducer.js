@@ -8,11 +8,6 @@ const initialState = {
   },
 };
 
-/**
- * Reducer to store app State.
- *
- * @param {Controll drawer state} drawerOpen
- */
 export default function app(state = initialState, action) {
   switch (action.type) {
     case '@app/OPEN_SNACKBAR':

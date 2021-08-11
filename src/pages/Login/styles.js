@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     marginTop: 10,
+    width: '100%',
   },
   loginFormButton: {
     display: 'flex',

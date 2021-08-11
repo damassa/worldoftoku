@@ -17,18 +17,24 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const checkToken = useCallback(() => {
-    api.get('me').then((response) => {
-      const data = response.data;
-      dispatch(
-        setUserOnStore(
-          localStorage.getItem('token'),
-          data.name,
-          data.email,
-          data.id,
-        ),
-      );
-      setIsLoaded(true);
-    });
+    api
+      .get('me')
+      .then((response) => {
+        const data = response.data;
+        dispatch(
+          setUserOnStore(
+            localStorage.getItem('token'),
+            data.name,
+            data.email,
+            data.id,
+          ),
+        );
+        setIsLoaded(true);
+      })
+      .catch(() => {
+        localStorage.setItem('token', null);
+        setIsLoaded(true);
+      });
   }, [dispatch]);
 
   useEffect(() => {

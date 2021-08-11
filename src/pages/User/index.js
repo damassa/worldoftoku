@@ -18,16 +18,17 @@ function User() {
     register,
   } = useForm();
 
-  const editUser = (formData) => {
-    api
-      .put('users', { user: formData })
+  const editUser = async (data) => {
+    await api
+      .put(`users/${user.id}`, { user: data })
       .then(() => {
         dispatch(
           AppActions.openSnackbar('Dados alterados com sucesso.', 'success'),
         );
       })
-      .catch(() => {
+      .catch((e) => {
         dispatch(AppActions.openSnackbar('Erro ao alterar dados.', 'error'));
+        console.log(e);
       });
   };
 
@@ -39,97 +40,95 @@ function User() {
             <h1>Altere dados da sua conta!</h1>
           </Grid>
           <Grid item xs={12} className={classes.inputWrapper}>
-            <form onSubmit={handleSubmit(editUser)}>
+            <form onSubmit={handleSubmit(editUser)} autoComplete="off">
               <Grid item xs={12}>
-                <Grid container justify="center">
-                  <Grid item xs={12}>
-                    <TextField
-                      {...register('name', {
-                        required: 'Campo obrigatório',
-                      })}
-                      inputProps={{ maxlenght: 25 }}
-                      error={!!errors?.name}
-                      helperText={errors?.name?.message || false}
-                      variant="outlined"
-                      required
-                      autoComplete="off"
-                      fullwidth="true"
-                      name="name"
-                      label="Usuário:"
-                      type="text"
-                      defaultValue={user.name}
-                      className={classes.input}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      {...register('email', {
-                        required: 'Forneça um e-mail válido',
-                        pattern: {
-                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i,
-                        },
-                      })}
-                      inputProps={{ maxlenght: 25 }}
-                      error={!!errors?.email}
-                      helperText={errors?.email?.message || false}
-                      variant="outlined"
-                      autoComplete="off"
-                      required
-                      fullwidth="true"
-                      name="email"
-                      label="E-mail:"
-                      type="text"
-                      defaultValue={user.email}
-                      className={classes.input}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      {...register('password', {
-                        required: 'Campo obrigatório',
-                      })}
-                      inputProps={{ maxlenght: 25 }}
-                      error={!!errors?.password}
-                      helperText={errors?.password?.message || false}
-                      variant="outlined"
-                      autoComplete="off"
-                      required
-                      fullwidth="true"
-                      name="password"
-                      label="Senha atual:"
-                      type="password"
-                      defaultValue={user.password}
-                      className={classes.input}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      inputProps={{ maxlenght: 25 }}
-                      autoComplete="off"
-                      variant="outlined"
-                      fullwidth="true"
-                      name="senha"
-                      label="Nova senha:"
-                      type="password"
-                      className={classes.input}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      inputProps={{ maxlenght: 25 }}
-                      variant="outlined"
-                      autoComplete="off"
-                      fullwidth="true"
-                      name="repeatSenha"
-                      label="Confirme a nova senha:"
-                      type="password"
-                      className={classes.input}
-                    />
-                  </Grid>
-                  <Grid container spacing={3} justify="flex-start">
-                    <Grid className={classes.formButton} item xs={12}>
-                      <button type="submit">Alterar</button>
-                    </Grid>
+                <TextField
+                  {...register('name', {
+                    required: true,
+                    maxLength: 30,
+                  })}
+                  error={!!errors?.name}
+                  helperText={
+                    errors?.name?.type === 'required' && 'Campo obrigatório'
+                  }
+                  autoComplete="off"
+                  variant="outlined"
+                  fullwidth="true"
+                  name="name"
+                  label="Nome:"
+                  type="text"
+                  defaultValue={user.name}
+                  className={classes.input}
+                />
+                <Grid item xs={12}>
+                  <TextField
+                    {...register('email', {
+                      required: true,
+                      pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i,
+                      maxLenght: 30,
+                    })}
+                    error={!!errors?.email}
+                    helperText={
+                      errors.email?.type === 'required' && 'Campo obrigatório'
+                    }
+                    autoComplete="off"
+                    variant="outlined"
+                    fullwidth="true"
+                    name="email"
+                    label="E-mail:"
+                    type="email"
+                    defaultValue={user.email}
+                    className={classes.input}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    {...register('password', {
+                      required: true,
+                    })}
+                    inputProps={{ maxlenght: 30 }}
+                    error={!!errors?.password}
+                    helperText={
+                      errors?.password?.type === 'required' &&
+                      'Campo obrigatório'
+                    }
+                    autoComplete="off"
+                    variant="outlined"
+                    fullwidth="true"
+                    name="password"
+                    label="Senha atual:"
+                    type="password"
+                    defaultValue={user.password}
+                    className={classes.input}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    inputProps={{ maxlenght: 30 }}
+                    variant="outlined"
+                    fullwidth="true"
+                    name="newPassword"
+                    label="Nova senha:"
+                    type="password"
+                    className={classes.input}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    inputProps={{ maxlenght: 30 }}
+                    variant="outlined"
+                    fullwidth="true"
+                    name="repeatSenha"
+                    label="Confirme a nova senha:"
+                    type="password"
+                    className={classes.input}
+                  />
+                </Grid>
+                <Grid container spacing={3} justify="flex-start">
+                  <Grid className={classes.formButton} item xs={12}>
+                    <button fullwidth="true" type="submit">
+                      Alterar
+                    </button>
                   </Grid>
                 </Grid>
               </Grid>

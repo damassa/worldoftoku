@@ -137,14 +137,13 @@ exports.getUser = async (req, res, next) => {
 
 exports.update = async (req, res, next) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password } = req.body.user;
     const userId = req.params.userId;
     const hashedPassword = await hashPassword(password);
     await User.findByIdAndUpdate(userId, {
       name,
       email,
       password: hashedPassword,
-      role,
     });
     const user = await User.findById(userId);
     res.status(200).json({

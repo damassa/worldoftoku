@@ -58,6 +58,7 @@ function Login() {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i,
                     },
                   })}
+                  inputProps={{ minlenght: 25 }}
                   className={classes.input}
                   variant="outlined"
                   required
@@ -83,7 +84,7 @@ function Login() {
                   label="Senha"
                   type="password"
                   fullwidth="true"
-                  inputProps={{ minlenght: 12 }}
+                  inputProps={{ minlenght: 25 }}
                 />
               </Grid>
               <Grid item xs={12}>

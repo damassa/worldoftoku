@@ -5,5 +5,5 @@ export const openSnackbar = (message, severity) => {
 };
 
 export const closeSnackbar = (message, severity) => {
-  return { type: '@app/OPEN_SNACKBAR' };
+  return { type: '@app/CLOSE_SNACKBAR' };
 };

@@ -57,7 +57,7 @@ function Register() {
                     autoComplete="off"
                     variant="outlined"
                     required
-                    fullWidth
+                    fullwidth="true"
                     name="name"
                     label="Nome:"
                     type="text"
@@ -78,7 +78,7 @@ function Register() {
                     autoComplete="off"
                     variant="outlined"
                     required
-                    fullWidth
+                    fullwidth="true"
                     name="email"
                     label="E-mail:"
                     type="text"
@@ -96,7 +96,7 @@ function Register() {
                     autoComplete="off"
                     variant="outlined"
                     required
-                    fullWidth
+                    fullwidth="true"
                     name="password"
                     label="Senha:"
                     type="password"

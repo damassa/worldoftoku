@@ -5,3 +5,9 @@ export const setUserOnStore = (token, name, email, id) => ({
   email,
   id,
 });
+
+export const updateUserOnStore = (name, email) => ({
+  type: '@user/UPDATE',
+  name,
+  email,
+});

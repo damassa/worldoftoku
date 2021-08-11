@@ -67,7 +67,7 @@ exports.register = async (req, res, next) => {
     const hashedPassword = await hashPassword(password);
     const user = new User({ name, email, password: hashedPassword, role });
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: '1d',
+      expiresIn: '1y',
     });
     user.token = token;
     await user.save();
@@ -137,15 +137,42 @@ exports.getUser = async (req, res, next) => {
 
 exports.update = async (req, res, next) => {
   try {
-    const { name, email, password } = req.body.user;
+    const {
+      name,
+      email,
+      password,
+      newPassword,
+      repeatPassword,
+    } = req.body.user;
+
     const userId = req.params.userId;
-    const hashedPassword = await hashPassword(password);
+    console.log(newPassword);
+    const validPassword = await validatePassword(password, req.user.password);
+
+    if (!validPassword) {
+      return res.status(401).json('Senha incorreta.');
+    }
+
+    let hashedPassword;
+
+    if (newPassword) {
+      if (newPassword !== repeatPassword) {
+        console.log('passou aqui');
+        return res.status(400).json('As senhas são diferentes.');
+      }
+      hashedPassword = await hashPassword(newPassword);
+    } else {
+      hashedPassword = await hashPassword(password);
+    }
+
     await User.findByIdAndUpdate(userId, {
       name,
       email,
       password: hashedPassword,
     });
+
     const user = await User.findById(userId);
+
     res.status(200).json({
       data: user,
       message: 'Usuário atualizado.',

@@ -6,6 +6,7 @@ import api from '../../services/api';
 import { Grid, TextField } from '@material-ui/core';
 
 import * as AppActions from '../../store/modules/app/actions.js';
+import { updateUserOnStore } from '../../store/modules/user/actions.js';
 import useStyles from './styles';
 
 function User() {
@@ -25,10 +26,15 @@ function User() {
         dispatch(
           AppActions.openSnackbar('Dados alterados com sucesso.', 'success'),
         );
+        dispatch(updateUserOnStore(data.name, data.email));
       })
       .catch((e) => {
-        dispatch(AppActions.openSnackbar('Erro ao alterar dados.', 'error'));
-        console.log(e);
+        dispatch(
+          AppActions.openSnackbar(
+            e.response?.data || 'Erro ao alterar dados.',
+            'error',
+          ),
+        );
       });
   };
 
@@ -104,6 +110,9 @@ function User() {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                    {...register('newPassword', {
+                      required: false,
+                    })}
                     inputProps={{ maxlenght: 30 }}
                     variant="outlined"
                     fullwidth="true"
@@ -115,10 +124,13 @@ function User() {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                    {...register('repeatPassword', {
+                      required: false,
+                    })}
                     inputProps={{ maxlenght: 30 }}
                     variant="outlined"
                     fullwidth="true"
-                    name="repeatSenha"
+                    name="repeatPassword"
                     label="Confirme a nova senha:"
                     type="password"
                     className={classes.input}

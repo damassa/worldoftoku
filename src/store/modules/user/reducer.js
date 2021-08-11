@@ -22,6 +22,12 @@ export default function user(state = initialState, action) {
         draft = initialState;
       });
 
+    case '@user/UPDATE':
+      return produce(state, (draft) => {
+        draft.email = action.email;
+        draft.name = action.name;
+      });
+
     default:
       return state;
   }

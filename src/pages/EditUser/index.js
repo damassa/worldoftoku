@@ -9,7 +9,7 @@ import * as AppActions from '../../store/modules/app/actions.js';
 import { updateUserOnStore } from '../../store/modules/user/actions.js';
 import useStyles from './styles';
 
-function User() {
+function EditUser() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -152,4 +152,4 @@ function User() {
   );
 }
 
-export default User;
+export default EditUser;

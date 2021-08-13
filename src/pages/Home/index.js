@@ -36,10 +36,6 @@ const Home = () => {
               </Grid>
             </Grid>
             <Grid item xs={12} className={classes.homeTitle}>
-              <h1>Clássicos</h1>
-            </Grid>
-            <Carousel />
-            <Grid item xs={12} className={classes.homeTitle}>
               <h1>Lançamentos</h1>
             </Grid>
             <Carousel />

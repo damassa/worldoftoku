@@ -1,29 +1,26 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  UserWrapper: {
-    padding: '20px 0 50px 0',
+const useStyles = makeStyles(() => ({
+  registerContainer: {
+    padding: '20px 0 70px 0',
   },
-  inputWrapper: {
-    maxWidth: 320,
-  },
-  userTitle: {
+  registerTitle: {
     '& h1': {
       textAlign: 'center',
     },
+  },
+  inputWrapper: {
+    maxWidth: 320,
   },
   input: {
     marginTop: 10,
     width: '100%',
   },
-  formButton: {
+  registerFormButton: {
     display: 'flex',
     justifyContent: 'center',
-    [theme.breakpoints.down('md')]: {
-      justifyContent: 'center',
-    },
     '& button': {
-      padding: '10px 20px',
+      padding: '10px 40px',
       borderRadius: 10,
       cursor: 'pointer',
       marginTop: 20,

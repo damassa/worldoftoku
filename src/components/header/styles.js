@@ -30,6 +30,9 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'flex-end',
     cursor: 'pointer',
   },
+  headerIcon: {
+    fontSize: 35,
+  },
 }));
 
 export default useStyles;

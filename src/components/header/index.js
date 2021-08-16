@@ -5,18 +5,16 @@ import { Link } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
+import PowerSettingsNewOutlinedIcon from '@material-ui/icons/PowerSettingsNewOutlined';
 
 import useStyles from './styles';
 
@@ -94,15 +92,10 @@ export default function Header() {
             </FormControl>
           </Grid>
           <Grid item xs={1} className={classes.user}>
-            <Button
-              aria-controls="customized-menu"
-              aria-haspopup="true"
-              variant="contained"
-              color="primary"
+            <AccountCircleOutlinedIcon
+              className={classes.headerIcon}
               onClick={handleClick}
-            >
-              Open Menu
-            </Button>
+            />
             <StyledMenu
               id="customized-menu"
               anchorEl={anchorEl}
@@ -112,21 +105,17 @@ export default function Header() {
             >
               <StyledMenuItem>
                 <ListItemIcon>
-                  <SendIcon fontSize="small" />
+                  <AccountCircleOutlinedIcon fontSize="small" />
                 </ListItemIcon>
-                <ListItemText primary="Sent mail" />
+                <Link to="/editProfile">
+                  <ListItemText primary="Minha conta" />
+                </Link>
               </StyledMenuItem>
               <StyledMenuItem>
                 <ListItemIcon>
-                  <DraftsIcon fontSize="small" />
+                  <PowerSettingsNewOutlinedIcon fontSize="small" />
                 </ListItemIcon>
-                <ListItemText primary="Drafts" />
-              </StyledMenuItem>
-              <StyledMenuItem>
-                <ListItemIcon>
-                  <InboxIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText primary="Inbox" />
+                <ListItemText primary="Logout" />
               </StyledMenuItem>
             </StyledMenu>
           </Grid>

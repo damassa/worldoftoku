@@ -1,124 +1,180 @@
 import React, { useState } from 'react';
-import clsx from 'clsx';
 
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { clearUserOnStore } from '../../store/modules/user/actions';
 
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import InputBase from '@material-ui/core/InputBase';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import FormControl from '@material-ui/core/FormControl';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
-import PowerSettingsNewOutlinedIcon from '@material-ui/icons/PowerSettingsNewOutlined';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MoreIcon from '@material-ui/icons/MoreVert';
 
 import useStyles from './styles';
-
-const StyledMenu = withStyles({
-  paper: {
-    border: '1px solid #d3d4d5',
-  },
-})((props) => (
-  <Menu
-    elevation={0}
-    getContentAnchorEl={null}
-    anchorOrigin={{
-      vertical: 'bottom',
-      horizontal: 'center',
-    }}
-    transformOrigin={{
-      vertical: 'top',
-      horizontal: 'center',
-    }}
-    {...props}
-  />
-));
-
-const StyledMenuItem = withStyles((theme) => ({
-  root: {
-    '&:focus': {
-      backgroundColor: theme.palette.primary.main,
-      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-        color: theme.palette.common.white,
-      },
-    },
-  },
-}))(MenuItem);
 
 export default function Header() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
-  const handleClick = (event) => {
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(clearUserOnStore());
+  };
+
+  const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
   };
 
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
+
+  const handleMobileMenuOpen = (event) => {
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const menuId = 'primary-search-account-menu';
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/editProfile" style={{ color: '#000' }}>
+          Minha conta
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleLogout}>Logout</MenuItem>
+    </Menu>
+  );
+
+  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem>
+        <IconButton color="inherit">
+          <Grid container>
+            <Grid item className={classes.menuTitle}>
+              Séries
+            </Grid>
+          </Grid>
+        </IconButton>
+      </MenuItem>
+      <MenuItem>
+        <IconButton color="inherit">
+          <Grid container>
+            <Grid item className={classes.menuTitle}>
+              Categorias
+            </Grid>
+          </Grid>
+        </IconButton>
+      </MenuItem>
+      <MenuItem onClick={handleOpen}>
+        <p>Perfil</p>
+      </MenuItem>
+    </Menu>
+  );
+
   return (
-    <Grid container justify="center" className={classes.headerBg}>
+    <Grid container justify="center" className={classes.navbar}>
       <Grid item xs={10}>
-        <Grid container className={classes.headerContainer}>
-          <Grid item xs={2} className={classes.logo}>
-            <Link to="/" style={{ color: '#fff' }}>
-              LOGO
-            </Link>
-          </Grid>
-          <Grid item xs={6} className={classes.category}>
-            Categorias
-          </Grid>
-          <Grid item xs={3} className={classes.search}>
-            <FormControl
-              className={clsx(classes.margin, classes.textField)}
-              variant="outlined"
-              fullWidth
-            >
-              <OutlinedInput
-                fullWidth
-                className={classes.inputSearch}
-                placeholder="Busque por séries..."
-                endAdornment={
-                  <InputAdornment position="end">
-                    <SearchIcon />
-                  </InputAdornment>
-                }
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={1} className={classes.user}>
-            <AccountCircleOutlinedIcon
-              className={classes.headerIcon}
-              onClick={handleClick}
-            />
-            <StyledMenu
-              id="customized-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <StyledMenuItem>
-                <ListItemIcon>
-                  <AccountCircleOutlinedIcon fontSize="small" />
-                </ListItemIcon>
-                <Link to="/editProfile">
-                  <ListItemText primary="Minha conta" />
+        <Grid container className={classes.grow}>
+          <AppBar position="static" className={classes.navbar}>
+            <Toolbar>
+              <Typography className={classes.title} noWrap>
+                <Link to="/" className={classes.link}>
+                  Logo
                 </Link>
-              </StyledMenuItem>
-              <StyledMenuItem>
-                <ListItemIcon>
-                  <PowerSettingsNewOutlinedIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText primary="Logout" />
-              </StyledMenuItem>
-            </StyledMenu>
-          </Grid>
+              </Typography>
+              <Grid item className={classes.search}>
+                <Grid container>
+                  <Grid item className={classes.searchIcon}>
+                    <SearchIcon />
+                  </Grid>
+                </Grid>
+                <InputBase
+                  placeholder="Buscar…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ 'aria-label': 'search' }}
+                />
+              </Grid>
+              <Grid item className={classes.grow} />
+              <Grid item className={classes.sectionDesktop}>
+                <IconButton color="inherit">
+                  <Grid container>
+                    <Grid item className={classes.menuTitle}>
+                      <Link className={classes.link} to="/series">
+                        Séries
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </IconButton>
+                <IconButton color="inherit">
+                  <Grid container>
+                    <Grid item className={classes.menuTitle}>
+                      <Link className={classes.link} to="/categories">
+                        Categorias
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </IconButton>
+                <IconButton
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleOpen}
+                  color="inherit"
+                >
+                  <AccountCircle className={classes.accountCircle} />
+                </IconButton>
+              </Grid>
+              <div className={classes.sectionMobile}>
+                <IconButton
+                  aria-label="show more"
+                  aria-controls={mobileMenuId}
+                  aria-haspopup="true"
+                  onClick={handleMobileMenuOpen}
+                  color="inherit"
+                >
+                  <MoreIcon />
+                </IconButton>
+              </div>
+            </Toolbar>
+          </AppBar>
+          {renderMobileMenu}
+          {renderMenu}
         </Grid>
       </Grid>
     </Grid>

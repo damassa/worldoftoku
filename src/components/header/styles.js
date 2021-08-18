@@ -1,37 +1,79 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, fade } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
-  headerBg: {
+const useStyles = makeStyles((theme) => ({
+  navbar: {
     backgroundColor: '#382D6B',
   },
-  headerContainer: {
+  grow: {
+    flexGrow: 1,
     height: 100,
-    color: '#f6f6f4',
   },
-  logo: {
-    display: 'flex',
-    alignItems: 'center',
+  link: {
+    color: '#fff',
   },
-  category: {
-    display: 'flex',
-    alignItems: 'center',
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  menuTitle: {
+    fontSize: 16,
+  },
+  title: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
   },
   search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(3),
+      width: 'auto',
+    },
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
   },
-  inputSearch: {
-    backgroundColor: '#f6f6f4',
+  inputRoot: {
+    color: 'inherit',
   },
-  user: {
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
+    },
+  },
+  accountCircle: {
+    fontSize: 25,
+  },
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+  sectionMobile: {
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    cursor: 'pointer',
-  },
-  headerIcon: {
-    fontSize: 35,
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
   },
 }));
 

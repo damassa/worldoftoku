@@ -60,7 +60,7 @@ export default function Header() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <Link to="/editProfile" style={{ color: '#000' }}>
+        <Link color="inherit" to="/editProfile">
           Minha conta
         </Link>
       </MenuItem>
@@ -97,8 +97,27 @@ export default function Header() {
           </Grid>
         </IconButton>
       </MenuItem>
-      <MenuItem onClick={handleOpen}>
-        <p>Perfil</p>
+      <MenuItem>
+        <IconButton color="inherit">
+          <Grid container>
+            <Grid item className={classes.menuTitle}>
+              <Link color="inherit" to="/editProfile">
+                Minha conta
+              </Link>
+            </Grid>
+          </Grid>
+        </IconButton>
+      </MenuItem>
+      <MenuItem>
+        <IconButton color="inherit">
+          <Grid container>
+            <Grid item className={classes.menuTitle}>
+              <Grid container onClick={handleLogout}>
+                Logout
+              </Grid>
+            </Grid>
+          </Grid>
+        </IconButton>
       </MenuItem>
     </Menu>
   );
@@ -107,7 +126,7 @@ export default function Header() {
     <Grid container justify="center" className={classes.navbar}>
       <Grid item xs={10}>
         <Grid container className={classes.grow}>
-          <AppBar position="static" className={classes.navbar}>
+          <AppBar elevation={0} position="static" className={classes.navbar}>
             <Toolbar>
               <Typography className={classes.title} noWrap>
                 <Link to="/" className={classes.link}>

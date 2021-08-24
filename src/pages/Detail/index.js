@@ -1,28 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Grid } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
-import ReactPlayer from 'react-player';
+import { Grid } from '@material-ui/core';
+import api from '../../services/api';
+import ReactPlayer from 'react-player/youtube';
 
 import useStyles from './styles';
 
-const Detail = (props) => {
+const Detail = () => {
   const classes = useStyles();
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
-    fetch('http://localhost:3000/data/series.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
+    api
+      .get(`series/${id}`)
       .then((response) => {
-        return response.json();
+        setData(response.data);
       })
-      .then((myJson) => {
-        let filterData = myJson.filter((serie) => serie.id === parseInt(id))[0];
-        setData(filterData);
+      .catch((error) => {
+        console.log(error);
       });
   }, [id]);
 
@@ -34,17 +30,23 @@ const Detail = (props) => {
             <Grid container className={classes.DetailContent}>
               <Grid item md={4}>
                 <Grid container className={classes.DetailImage}>
-                  <Grid item sm={12} md={8}>
-                    <img src={data.imageCard} alt="Detalhe" />
-                  </Grid>
+                  <img src={data.image} alt="Detalhe" title={data.name} />
                 </Grid>
                 <Grid container className={classes.SerieDetail}>
                   <Grid item sm={12} md={8}>
                     <h1>{data.name}</h1>
                     <h2>{data.year}</h2>
-                    <Grid item xs={12} className={classes.CategoryTag}>
-                      <div>{data.category}</div>
-                    </Grid>
+                    <h4>{data.duration} minutes</h4>
+                    {data.category?.map((cat) => (
+                      <Grid
+                        key={cat._id}
+                        item
+                        xs={12}
+                        className={classes.CategoryTag}
+                      >
+                        <div>{cat.name}</div>
+                      </Grid>
+                    ))}
                   </Grid>
                 </Grid>
               </Grid>

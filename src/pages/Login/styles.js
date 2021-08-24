@@ -1,14 +1,26 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  formButton: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    [theme.breakpoints.down('md')]: {
-      justifyContent: 'center',
+  loginWrapper: {
+    padding: '20px 0 70px 0',
+  },
+  loginContainer: {
+    maxWidth: 320,
+  },
+  loginTitle: {
+    '& h1': {
+      textAlign: 'center',
     },
+  },
+  input: {
+    marginTop: 10,
+    width: '100%',
+  },
+  loginFormButton: {
+    display: 'flex',
+    justifyContent: 'center',
     '& button': {
-      padding: '10px 20px',
+      padding: '10px 40px',
       borderRadius: 10,
       cursor: 'pointer',
       marginTop: 20,

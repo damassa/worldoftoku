@@ -11,3 +11,7 @@ export const updateUserOnStore = (name, email) => ({
   name,
   email,
 });
+
+export const clearUserOnStore = () => ({
+  type: '@user/LOGOUT',
+});

@@ -18,9 +18,7 @@ export default function user(state = initialState, action) {
       };
 
     case '@user/LOGOUT':
-      return produce(state, (draft) => {
-        draft = initialState;
-      });
+      return initialState;
 
     case '@user/UPDATE':
       return produce(state, (draft) => {

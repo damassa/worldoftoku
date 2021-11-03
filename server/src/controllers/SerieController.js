@@ -1,15 +1,37 @@
 const Serie = require('../models/Serie');
+const Category = require('../models/Category');
 
 module.exports = {
   async list(req, res) {
+    let order = { year: -1 };
     const serie = await Serie.find(req.params)
       .populate('category')
-      .sort('year');
+      .sort(order)
+      .limit(10);
     return res.json(serie);
   },
 
   async show(req, res) {
     const serie = await Serie.findById(req.params.id).populate('category');
+    return res.json(serie);
+  },
+
+  async getSerieByCategory(req, res) {
+    const serie = Category.aggregate([
+      { $match: { name: req.params.name } },
+      {
+        $lookup: {
+          from: Serie.collection.name,
+          let: { categoryId: '$_id' },
+          pipeline: [
+            { $match: { $expr: { $eq: ['$category', '$$categoryId'] } } },
+          ],
+          as: 'series',
+        },
+      },
+      { $unwind: '$series' },
+      { $replaceRoot: { newRoot: '$series' } },
+    ]);
     return res.json(serie);
   },
 

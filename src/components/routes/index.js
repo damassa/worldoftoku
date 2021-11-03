@@ -3,8 +3,10 @@ import { useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import Home from '../../pages/Home';
+import Categories from '../../pages/Categories';
 import Detail from '../../pages/Detail';
 import EditUser from '../../pages/EditUser';
+import FilteredSerie from '../../pages/FilteredSerie';
 import Login from '../Login';
 import Register from '../../pages/Register';
 import Header from '../header';
@@ -38,6 +40,8 @@ const Routes = () => (
           <PrivateRoute path="/" exact component={Home} />
           <PrivateRoute path="/detail/:id" exact component={Detail} />
           <PrivateRoute path="/editProfile" exact component={EditUser} />
+          <PrivateRoute path="/search/:id" exact component={FilteredSerie} />
+          <PrivateRoute path="/byCategory" exact component={Categories} />
           <Route path="/register" exact component={Register} />
         </div>
         <Footer />

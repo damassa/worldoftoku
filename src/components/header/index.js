@@ -83,7 +83,7 @@ export default function Header() {
         <IconButton color="inherit">
           <Grid container>
             <Grid item className={classes.menuTitle}>
-              Séries
+              Minha lista
             </Grid>
           </Grid>
         </IconButton>
@@ -92,7 +92,9 @@ export default function Header() {
         <IconButton color="inherit">
           <Grid container>
             <Grid item className={classes.menuTitle}>
-              Categorias
+              <Link className={classes.link} to="/byCategory">
+                Categorias
+              </Link>
             </Grid>
           </Grid>
         </IconButton>
@@ -153,8 +155,8 @@ export default function Header() {
                 <IconButton color="inherit">
                   <Grid container>
                     <Grid item className={classes.menuTitle}>
-                      <Link className={classes.link} to="/series">
-                        Séries
+                      <Link className={classes.link} to="/favorites">
+                        Minha lista
                       </Link>
                     </Grid>
                   </Grid>
@@ -162,7 +164,7 @@ export default function Header() {
                 <IconButton color="inherit">
                   <Grid container>
                     <Grid item className={classes.menuTitle}>
-                      <Link className={classes.link} to="/categories">
+                      <Link className={classes.link} to="/byCategory">
                         Categorias
                       </Link>
                     </Grid>

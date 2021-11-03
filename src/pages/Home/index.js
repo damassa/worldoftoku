@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import api from '../../services/api';
 import { Grid } from '@material-ui/core';
 import Carousel from '../../components/carousel';
 import Image from '../../assets/undraw_horror_movie_3988.svg';
@@ -6,7 +7,19 @@ import Image from '../../assets/undraw_horror_movie_3988.svg';
 import useStyles from './styles';
 
 const Home = () => {
+  const [data, setData] = useState([]);
   const classes = useStyles();
+
+  useEffect(() => {
+    api
+      .get('series')
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <Grid container className={classes.homeContainer}>
@@ -38,7 +51,7 @@ const Home = () => {
             <Grid item xs={12} className={classes.homeTitle}>
               <h1>Lançamentos</h1>
             </Grid>
-            <Carousel />
+            <Carousel data={data} />
           </Grid>
         </Grid>
       </Grid>

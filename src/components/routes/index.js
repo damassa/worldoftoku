@@ -41,7 +41,7 @@ const Routes = () => (
           <PrivateRoute path="/detail/:id" exact component={Detail} />
           <PrivateRoute path="/editProfile" exact component={EditUser} />
           <PrivateRoute path="/search/:id" exact component={FilteredSerie} />
-          <PrivateRoute path="/byCategory" exact component={Categories} />
+          <PrivateRoute path="/categories" exact component={Categories} />
           <Route path="/register" exact component={Register} />
         </div>
         <Footer />

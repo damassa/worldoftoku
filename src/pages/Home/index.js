@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     api
-      .get('series')
+      .get('orderByYear')
       .then((response) => {
         setData(response.data);
       })

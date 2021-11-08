@@ -6,14 +6,50 @@ import Carousel from '../../components/carousel';
 // import useStyles from './styles';
 
 const Categories = () => {
-  const [data, setData] = useState([]);
+  const [superSentai, setSuperSentai] = useState([]);
+  const [ultraSeries, setUltraSeries] = useState([]);
+  const [kamenRider, setKamenRider] = useState([]);
+  const [metalHero, setMetalHero] = useState([]);
   // const classes = useStyles();
 
   useEffect(() => {
     api
-      .get('byCategory')
+      .post('series/categories', { name: 'Super Sentai' })
       .then((response) => {
-        setData(response.data);
+        setSuperSentai(response.superSentai);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    api
+      .post('series/categories', { name: 'Ultra Series' })
+      .then((response) => {
+        setUltraSeries(response.ultraSeries);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    api
+      .post('series/categories', { name: 'Kamen Rider' })
+      .then((response) => {
+        setKamenRider(response.kamenRider);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    api
+      .post('series/categories', { name: 'Metal Hero' })
+      .then((response) => {
+        setMetalHero(response.metalHero);
       })
       .catch((error) => {
         console.log(error);
@@ -27,9 +63,21 @@ const Categories = () => {
           <Grid item xs={10}>
             <Grid container>
               <Grid item xs={12}>
-                <h1>Categoria</h1>
+                <h1>Super Sentai</h1>
               </Grid>
-              <Carousel data={data} />
+              <Carousel data={superSentai} />
+              <Grid item xs={12}>
+                <h1>Ultra Series</h1>
+              </Grid>
+              <Carousel data={ultraSeries} />
+              <Grid item xs={12}>
+                <h1>Kamen Rider</h1>
+              </Grid>
+              <Carousel data={kamenRider} />
+              <Grid item xs={12}>
+                <h1>Metal Hero</h1>
+              </Grid>
+              <Carousel data={metalHero} />
             </Grid>
           </Grid>
         </Grid>

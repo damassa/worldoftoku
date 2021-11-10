@@ -95,6 +95,7 @@ const Carousel = ({ data }) => {
     </Slider>
   );
 };
+
 export default Carousel;
 
 SamplePrevArrow.propTypes = {

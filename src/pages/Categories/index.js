@@ -57,11 +57,11 @@ const Categories = () => {
   }, []);
 
   return (
-    <Grid container>
+    <Grid container className={classes.homeContainer}>
       <Grid item xs={12}>
         <Grid container justify="center">
           <Grid item xs={10}>
-            <Grid container>
+            <Grid container className={classes.homeContent}>
               <Grid item xs={12}>
                 <h1>Super Sentai</h1>
                 {superSentai ? <Carousel data={superSentai} /> : null}

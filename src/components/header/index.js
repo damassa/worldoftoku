@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -13,7 +13,7 @@ import InputBase from '@material-ui/core/InputBase';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import PersonIcon from '@material-ui/icons/Person';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
 import useStyles from './styles';
@@ -26,6 +26,10 @@ export default function Header() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+
+  // });
 
   const handleLogout = () => {
     dispatch(clearUserOnStore());
@@ -148,6 +152,7 @@ export default function Header() {
                     input: classes.inputInput,
                   }}
                   inputProps={{ 'aria-label': 'search' }}
+                  // onChange={(e) => setSearch(e.target.value)}
                 />
               </Grid>
               <Grid item className={classes.grow} />
@@ -178,7 +183,7 @@ export default function Header() {
                   onClick={handleOpen}
                   color="inherit"
                 >
-                  <AccountCircle className={classes.accountCircle} />
+                  <PersonIcon className={classes.personIcon} />
                 </IconButton>
               </Grid>
               <div className={classes.sectionMobile}>

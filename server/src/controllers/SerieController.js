@@ -29,6 +29,17 @@ module.exports = {
     return res.json(serie);
   },
 
+  async search(req, res) {
+    Serie.find({ serie: req.params.name })
+      .then((data) => {
+        res.json(data);
+        console.log(data);
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  },
+
   async store(req, res) {
     const {
       name,

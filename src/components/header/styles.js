@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
       width: '20ch',
     },
   },
-  accountCircle: {
+  personIcon: {
     fontSize: 25,
   },
   sectionDesktop: {

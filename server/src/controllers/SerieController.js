@@ -30,14 +30,13 @@ module.exports = {
   },
 
   async search(req, res) {
-    Serie.find({ serie: req.params.name })
-      .then((data) => {
-        res.json(data);
-        console.log(data);
-      })
-      .catch((err) => {
-        res.send(err);
-      });
+    const serie = await Serie.find({ name: req.body.name });
+    if (!serie || serie.length === 0) {
+      res.json({ error: 'Sem séries' });
+    } else {
+      res.json(serie);
+    }
+    return res.json(serie);
   },
 
   async store(req, res) {

@@ -5,34 +5,24 @@ import api from '../../services/api';
 // import { Container } from './styles';
 
 const Search = () => {
-  // const [data, setData] = useState([]);
-  // const [filteredSerie, setFilteredSerie] = useState(data);
-  // const [search, setSearch] = useState('');
+  const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   api
-  //     .get('series')
-  //     .then((response) => {
-  //       setData(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
-
-  // useEffect(() => {
-  //   setFilteredSerie(
-  //     data.filter((serie) =>
-  //       serie.name.toLowerCase().includes(search.toLowerCase()),
-  //     ),
-  //   );
-  // }, [search, data]);
+  useEffect(() => {
+    api
+      .post('series', { name: 'name' })
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <Grid container>
       <Grid item xs={12}>
-        {/* {filteredSerie.map((serie, index) => (
-          <div key={index}>{...serie}</div>
+        {/* {data.map((serie) => (
+          <div key={serie._id}>{...serie}</div>
         ))} */}
         opa
       </Grid>

@@ -27,10 +27,6 @@ export default function Header() {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-
-  // });
-
   const handleLogout = () => {
     dispatch(clearUserOnStore());
   };
@@ -128,6 +124,10 @@ export default function Header() {
     </Menu>
   );
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <Grid container justify="center" className={classes.navbar}>
       <Grid item xs={10}>
@@ -140,20 +140,22 @@ export default function Header() {
                 </Link>
               </Typography>
               <Grid item className={classes.search}>
-                <Grid container>
-                  <Grid item className={classes.searchIcon}>
-                    <SearchIcon />
+                <form onSubmit={handleSubmit}>
+                  <Grid container>
+                    <Grid item className={classes.searchIcon}>
+                      <SearchIcon />
+                    </Grid>
                   </Grid>
-                </Grid>
-                <InputBase
-                  placeholder="Buscar…"
-                  classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                  }}
-                  inputProps={{ 'aria-label': 'search' }}
-                  // onChange={(e) => setSearch(e.target.value)}
-                />
+                  <InputBase
+                    name="name"
+                    placeholder="Buscar…"
+                    classes={{
+                      root: classes.inputRoot,
+                      input: classes.inputInput,
+                    }}
+                    inputProps={{ 'aria-label': 'search' }}
+                  />
+                </form>
               </Grid>
               <Grid item className={classes.grow} />
               <Grid item className={classes.sectionDesktop}>

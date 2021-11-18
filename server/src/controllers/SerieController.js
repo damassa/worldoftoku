@@ -30,9 +30,17 @@ module.exports = {
   },
 
   async search(req, res) {
-    const serie = await Serie.find({ name: req.body.name });
+    const string = req.body.name;
+    const strings = string.split(' ');
+    let allQueries = [];
+
+    strings.forEach((element) => {
+      allQueries.push({ name: { $regex: String(element), $options: 'i' } });
+    });
+
+    const serie = await Serie.find({ $or: allQueries });
     if (!serie || serie.length === 0) {
-      res.json({ error: 'Sem séries' });
+      res.status(404).json({ error: 'Sem séries' });
     } else {
       res.json(serie);
     }

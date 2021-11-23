@@ -40,11 +40,10 @@ module.exports = {
 
     const serie = await Serie.find({ $or: allQueries });
     if (!serie || serie.length === 0) {
-      res.status(404).json({ error: 'Sem séries' });
+      res.status(404).json({ error: 'Nenhuma série encontrada' });
     } else {
-      res.json(serie);
+      return res.json(serie);
     }
-    return res.json(serie);
   },
 
   async store(req, res) {

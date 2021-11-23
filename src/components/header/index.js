@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import { clearUserOnStore } from '../../store/modules/user/actions';
 
@@ -22,6 +22,7 @@ export default function Header() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const history = useHistory();
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -124,8 +125,21 @@ export default function Header() {
     </Menu>
   );
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  history.listen((location) => {
+    if (!location.pathname.startsWith('/search/')) {
+      document.querySelector('input[type=name]').value = '';
+    }
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = document.querySelector('input[type=name]').value;
+
+    if (name === null) {
+      history.push('/');
+    } else {
+      history.push(`/search/${name}`);
+    }
   };
 
   return (
@@ -147,6 +161,7 @@ export default function Header() {
                     </Grid>
                   </Grid>
                   <InputBase
+                    type="name"
                     name="name"
                     placeholder="Buscar…"
                     classes={{

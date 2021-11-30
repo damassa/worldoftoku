@@ -9,6 +9,14 @@ module.exports = {
     return res.json(serie);
   },
 
+  async listFavorites(req, res) {
+    const favorites = req.user.favorites;
+    const serie = await Serie.find({
+      _id: { $in: favorites },
+    });
+    return res.json(serie);
+  },
+
   async orderByYear(req, res) {
     let order = { year: -1 };
     const serie = await Serie.find(req.params)

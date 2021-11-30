@@ -9,6 +9,7 @@ import EditUser from '../../pages/EditUser';
 import Search from '../../pages/Search';
 import Login from '../Login';
 import Register from '../../pages/Register';
+import Favorites from '../../pages/Favorites';
 import Header from '../header';
 import Footer from '../footer';
 
@@ -42,6 +43,7 @@ const Routes = () => (
           <PrivateRoute path="/editProfile" exact component={EditUser} />
           <PrivateRoute path="/search/:name" exact component={Search} />
           <PrivateRoute path="/categories" exact component={Categories} />
+          <PrivateRoute path="/favorites" exact component={Favorites} />
           <Route path="/register" exact component={Register} />
         </div>
         <Footer />

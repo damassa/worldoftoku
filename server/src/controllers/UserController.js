@@ -123,16 +123,23 @@ exports.list = async (req, res) => {
   });
 };
 
-exports.getUser = async (req, res, next) => {
+exports.getUser = async (req, res) => {
   try {
     const userId = req.params.userId;
     const user = await User.findById(userId);
 
-    if (!user) return next(new Error('Usuário não existe.'));
+    if (!user) return new Error('Usuário não existe.');
     res.status(200).json(user);
   } catch (err) {
-    next(err);
+    res.status(500).json(err);
   }
+};
+
+exports.listFavorites = async (req, res) => {
+  const userId = req.params.userId;
+  const user = await User.findById(userId);
+  const serie = await User.find().populate('series');
+  return res.json(serie);
 };
 
 exports.update = async (req, res, next) => {

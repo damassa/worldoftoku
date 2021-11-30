@@ -1,35 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import api from '../../services/api';
 
-import useStyles from './styles';
+import useStyles from '../Search/styles';
 
-const Search = () => {
+const Favorites = () => {
   const [data, setData] = useState([]);
-  const { name } = useParams();
   const classes = useStyles();
 
   useEffect(() => {
     api
-      .post('series', { name })
+      .get('/series/favorites')
       .then((response) => {
         setData(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [name]);
+  }, []);
 
   return (
-    <Grid container className={classes.searchContainer} justify="center">
+    <Grid container justify="center">
       <Grid item xs={10}>
-        <Grid item xs={12}>
-          <h2>Resultados para: {name}</h2>
-        </Grid>
         <Grid container justify="space-between">
           {data.map((serie) => (
-            <Grid key={serie._id} item className={classes.listSeries}>
+            <Grid item key={serie._id}>
               <Link to={`/detail/${serie._id}`}>
                 <Grid container className={classes.searchCardContainer}>
                   <Grid item xs={12} className={classes.searchCard}>
@@ -48,4 +44,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default Favorites;

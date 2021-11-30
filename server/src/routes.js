@@ -7,6 +7,14 @@ const UserController = require('../src/controllers/UserController');
 
 /* Series Router */
 routes.get('/series', SerieController.list);
+routes.get(
+  '/series/favorites',
+  UserController.allowIfLoggedIn,
+  SerieController.listFavorites,
+);
+routes.post('/series', SerieController.search);
+routes.get('/orderByYear', SerieController.orderByYear);
+routes.post('/series/categories', SerieController.getSerieByCategory);
 routes.post('/series', SerieController.store);
 routes.get('/series/:id', SerieController.show);
 routes.put('/series/:id', SerieController.update);

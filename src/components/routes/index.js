@@ -3,10 +3,13 @@ import { useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import Home from '../../pages/Home';
+import Categories from '../../pages/Categories';
 import Detail from '../../pages/Detail';
 import EditUser from '../../pages/EditUser';
-import Login from '../../pages/Login';
+import Search from '../../pages/Search';
+import Login from '../Login';
 import Register from '../../pages/Register';
+import Favorites from '../../pages/Favorites';
 import Header from '../header';
 import Footer from '../footer';
 
@@ -30,17 +33,22 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 const Routes = () => (
   <BrowserRouter>
-    <Header />
-    <div className="wrapper">
-      <Switch>
-        <PrivateRoute path="/" exact component={Home} />
-        <PrivateRoute path="/detail/:id" exact component={Detail} />
-        <PrivateRoute path="/editProfile" exact component={EditUser} />
-        <Route path="/register" exact component={Register} />
-        <Route path="/login" exact component={Login} />
-      </Switch>
-    </div>
-    <Footer />
+    <Switch>
+      <Route path="/login" exact component={Login} />
+      <>
+        <Header />
+        <div className="wrapper">
+          <PrivateRoute path="/" exact component={Home} />
+          <PrivateRoute path="/detail/:id" exact component={Detail} />
+          <PrivateRoute path="/editProfile" exact component={EditUser} />
+          <PrivateRoute path="/search/:name" exact component={Search} />
+          <PrivateRoute path="/categories" exact component={Categories} />
+          <PrivateRoute path="/favorites" exact component={Favorites} />
+          <Route path="/register" exact component={Register} />
+        </div>
+        <Footer />
+      </>
+    </Switch>
   </BrowserRouter>
 );
 

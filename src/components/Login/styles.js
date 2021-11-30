@@ -2,26 +2,36 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   loginWrapper: {
-    padding: '20px 0 70px 0',
+    backgroundColor: '#382D6B',
+    height: '100vh',
+    alignItems: 'center',
   },
   loginContainer: {
-    maxWidth: 320,
+    maxWidth: '95%',
+    width: 400,
+    background: '#FAEAFF',
+    padding: '30px 30px 70px',
+    borderRadius: 5,
+    boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
   },
   loginTitle: {
-    '& h1': {
-      textAlign: 'center',
-    },
+    textAlign: 'center',
+  },
+  loginForm: {
+    width: '100%',
   },
   input: {
     marginTop: 10,
     width: '100%',
+    justifyContent: 'center',
   },
   loginFormButton: {
     display: 'flex',
     justifyContent: 'center',
     '& button': {
-      padding: '10px 40px',
-      borderRadius: 10,
+      width: '100%',
+      padding: '15px 40px',
+      borderRadius: 5,
       cursor: 'pointer',
       marginTop: 20,
       border: 'none',
@@ -33,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
         transition: '.2s',
       },
     },
+  },
+  forgotPassword: {
+    top: 45,
+    position: 'relative',
   },
 }));
 

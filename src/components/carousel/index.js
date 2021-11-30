@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import PropTypes from 'prop-types';
-import api from '../../services/api';
 import { Grid, Hidden } from '@material-ui/core';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -36,20 +35,8 @@ function SamplePrevArrow(props) {
   );
 }
 
-const Carousel = () => {
-  const [data, setData] = useState([]);
+const Carousel = ({ data }) => {
   const classes = useStyles();
-
-  useEffect(() => {
-    api
-      .get('series')
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   var settings = {
     dots: false,
@@ -108,6 +95,7 @@ const Carousel = () => {
     </Slider>
   );
 };
+
 export default Carousel;
 
 SamplePrevArrow.propTypes = {

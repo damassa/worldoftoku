@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import { clearUserOnStore } from '../../store/modules/user/actions';
 
@@ -13,7 +13,7 @@ import InputBase from '@material-ui/core/InputBase';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import PersonIcon from '@material-ui/icons/Person';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
 import useStyles from './styles';
@@ -22,6 +22,7 @@ export default function Header() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const history = useHistory();
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -83,7 +84,7 @@ export default function Header() {
         <IconButton color="inherit">
           <Grid container>
             <Grid item className={classes.menuTitle}>
-              Séries
+              Minha lista
             </Grid>
           </Grid>
         </IconButton>
@@ -92,7 +93,9 @@ export default function Header() {
         <IconButton color="inherit">
           <Grid container>
             <Grid item className={classes.menuTitle}>
-              Categorias
+              <Link className={classes.link} to="/categories">
+                Categorias
+              </Link>
             </Grid>
           </Grid>
         </IconButton>
@@ -101,7 +104,7 @@ export default function Header() {
         <IconButton color="inherit">
           <Grid container>
             <Grid item className={classes.menuTitle}>
-              <Link color="inherit" to="/editProfile">
+              <Link color="inherit" to="/categories">
                 Minha conta
               </Link>
             </Grid>
@@ -122,6 +125,23 @@ export default function Header() {
     </Menu>
   );
 
+  history.listen((location) => {
+    if (!location.pathname.startsWith('/search/')) {
+      document.querySelector('input[type=name]').value = '';
+    }
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = document.querySelector('input[type=name]').value;
+
+    if (name === null) {
+      history.push('/');
+    } else {
+      history.push(`/search/${name}`);
+    }
+  };
+
   return (
     <Grid container justify="center" className={classes.navbar}>
       <Grid item xs={10}>
@@ -134,27 +154,31 @@ export default function Header() {
                 </Link>
               </Typography>
               <Grid item className={classes.search}>
-                <Grid container>
-                  <Grid item className={classes.searchIcon}>
-                    <SearchIcon />
+                <form onSubmit={handleSubmit}>
+                  <Grid container>
+                    <Grid item className={classes.searchIcon}>
+                      <SearchIcon />
+                    </Grid>
                   </Grid>
-                </Grid>
-                <InputBase
-                  placeholder="Buscar…"
-                  classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                  }}
-                  inputProps={{ 'aria-label': 'search' }}
-                />
+                  <InputBase
+                    type="name"
+                    name="name"
+                    placeholder="Buscar…"
+                    classes={{
+                      root: classes.inputRoot,
+                      input: classes.inputInput,
+                    }}
+                    inputProps={{ 'aria-label': 'search' }}
+                  />
+                </form>
               </Grid>
               <Grid item className={classes.grow} />
               <Grid item className={classes.sectionDesktop}>
                 <IconButton color="inherit">
                   <Grid container>
                     <Grid item className={classes.menuTitle}>
-                      <Link className={classes.link} to="/series">
-                        Séries
+                      <Link className={classes.link} to="/favorites">
+                        Minha lista
                       </Link>
                     </Grid>
                   </Grid>
@@ -176,7 +200,7 @@ export default function Header() {
                   onClick={handleOpen}
                   color="inherit"
                 >
-                  <AccountCircle className={classes.accountCircle} />
+                  <PersonIcon className={classes.personIcon} />
                 </IconButton>
               </Grid>
               <div className={classes.sectionMobile}>

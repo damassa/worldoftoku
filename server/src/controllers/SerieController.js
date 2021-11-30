@@ -1,4 +1,5 @@
 const Serie = require('../models/Serie');
+const Category = require('../models/Category');
 
 module.exports = {
   async list(req, res) {
@@ -8,9 +9,49 @@ module.exports = {
     return res.json(serie);
   },
 
+  async listFavorites(req, res) {
+    const favorites = req.user.favorites;
+    const serie = await Serie.find({
+      _id: { $in: favorites },
+    });
+    return res.json(serie);
+  },
+
+  async orderByYear(req, res) {
+    let order = { year: -1 };
+    const serie = await Serie.find(req.params)
+      .populate('category')
+      .sort(order)
+      .limit(10);
+    return res.json(serie);
+  },
+
   async show(req, res) {
     const serie = await Serie.findById(req.params.id).populate('category');
     return res.json(serie);
+  },
+
+  async getSerieByCategory(req, res) {
+    const category = await Category.findOne({ name: req.body.name });
+    const serie = await Serie.find({ category: { $in: [category._id] } });
+    return res.json(serie);
+  },
+
+  async search(req, res) {
+    const string = req.body.name;
+    const strings = string.split(' ');
+    let allQueries = [];
+
+    strings.forEach((element) => {
+      allQueries.push({ name: { $regex: String(element), $options: 'i' } });
+    });
+
+    const serie = await Serie.find({ $or: allQueries });
+    if (!serie || serie.length === 0) {
+      res.status(404).json({ error: 'Nenhuma série encontrada' });
+    } else {
+      return res.json(serie);
+    }
   },
 
   async store(req, res) {

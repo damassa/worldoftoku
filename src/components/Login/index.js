@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Grid, TextField } from '@material-ui/core';
@@ -95,7 +95,9 @@ function Login() {
             </Grid>
             <Grid item xs={12} className={classes.forgotPassword}>
               <Grid container justify="center">
-                <span>Esqueceu sua senha?</span>
+                <Link to="/forgotPassword">
+                  <span>Esqueceu sua senha?</span>
+                </Link>
               </Grid>
             </Grid>
           </form>

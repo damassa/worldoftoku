@@ -47,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
   forgotPassword: {
     top: 45,
     position: 'relative',
+    '& span': {
+      color: '#6e5da8',
+      textDecoration: 'underline',
+    },
   },
 }));
 

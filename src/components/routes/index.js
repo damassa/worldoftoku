@@ -2,16 +2,17 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-import Home from '../../pages/Home';
 import Categories from '../../pages/Categories';
 import Detail from '../../pages/Detail';
 import EditUser from '../../pages/EditUser';
-import Search from '../../pages/Search';
+import Favorites from '../../pages/Favorites';
+import Footer from '../footer';
+import ForgotPassword from '../../pages/ForgotPassword';
+import Header from '../header';
+import Home from '../../pages/Home';
 import Login from '../Login';
 import Register from '../../pages/Register';
-import Favorites from '../../pages/Favorites';
-import Header from '../header';
-import Footer from '../footer';
+import Search from '../../pages/Search';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const user = useSelector((state) => state.user);
@@ -35,6 +36,7 @@ const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route path="/login" exact component={Login} />
+      <Route path="/forgotPassword" exact component={ForgotPassword} />
       <>
         <Header />
         <div className="wrapper">

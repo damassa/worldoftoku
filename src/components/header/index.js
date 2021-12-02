@@ -30,6 +30,7 @@ export default function Header() {
 
   const handleLogout = () => {
     dispatch(clearUserOnStore());
+    localStorage.removeItem('token');
   };
 
   const handleOpen = (event) => {

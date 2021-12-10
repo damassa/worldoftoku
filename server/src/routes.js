@@ -28,6 +28,8 @@ routes.put('/categories/:id', CategoryController.update);
 routes.delete('/categories/:id', CategoryController.delete);
 
 /* User Router */
+routes.post('/users/forgotPassword', UserController.setResetPasswordToken);
+routes.post('/users/resetPassword', UserController.resetPassword);
 routes.post('/register', UserController.register);
 routes.post('/login', UserController.login);
 routes.post('/logout', UserController.logout);

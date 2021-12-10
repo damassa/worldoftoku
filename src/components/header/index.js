@@ -127,7 +127,10 @@ export default function Header() {
   );
 
   history.listen((location) => {
-    if (!location.pathname.startsWith('/search/')) {
+    if (
+      !location.pathname.startsWith('/search/') &&
+      document.querySelector('input[type=name]')
+    ) {
       document.querySelector('input[type=name]').value = '';
     }
   });

@@ -1,6 +1,10 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { v4: uuidv4 } = require('uuid');
+const sender = require('../helpers/nodemailer');
+
+require('dotenv').config();
 
 const { roles } = require('../roles');
 
@@ -59,6 +63,49 @@ exports.isLogged = async (req, res) => {
     name,
     email,
   });
+};
+
+exports.setResetPasswordToken = async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) return res.status(401).json('Usuario inexistente.');
+
+  const token = uuidv4();
+  user.resetPasswordToken = token;
+  user.save();
+
+  sender({
+    from: process.env.MAILER_EMAIL,
+    to: user.email,
+    subject: 'Troca de senha',
+    text: 'http://localhost:3000/resetPassword/' + token,
+  })
+    .then((data) => {
+      console.log(data);
+      res.json({ message: 'E-mail enviado com sucesso' });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json({ message: 'Erro no envio do e-mail' });
+    });
+};
+
+exports.resetPassword = async (req, res) => {
+  const { token, password, confirmPassword } = req.body;
+  const user = await User.findOne({ resetPasswordToken: token });
+
+  if (!user) return res.status(401).json('Token inválido.');
+
+  if (password !== confirmPassword) {
+    return res.status(400).json('Senhas diferentes.');
+  }
+
+  const hashedPassword = await hashPassword(password);
+  user.password = hashedPassword;
+  user.resetPasswordToken = null;
+
+  await user.save();
+  return res.status(200).json('Senha alterada com sucesso!');
 };
 
 exports.register = async (req, res, next) => {

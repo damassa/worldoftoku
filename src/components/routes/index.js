@@ -12,6 +12,7 @@ import Header from '../header';
 import Home from '../../pages/Home';
 import Login from '../Login';
 import Register from '../../pages/Register';
+import ResetPassword from '../../pages/ResetPassword';
 import Search from '../../pages/Search';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -37,6 +38,7 @@ const Routes = () => (
     <Switch>
       <Route path="/login" exact component={Login} />
       <Route path="/forgotPassword" exact component={ForgotPassword} />
+      <Route path="/resetPassword/:token" exact component={ResetPassword} />
       <>
         <Header />
         <div className="wrapper">

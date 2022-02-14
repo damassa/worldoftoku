@@ -16,7 +16,10 @@
       "titleBar.inactiveForeground": "#e7e7e799",
       "bookmarks.lineBackground": "#5b61e325",
       "bookmarks.lineBorder": "#5b61e325",
-      "bookmarks.overviewRuler": "#5b61e325"
+      "bookmarks.overviewRuler": "#5b61e325",
+      "sash.hoverBorder": "#5b61e3",
+      "statusBarItem.remoteBackground": "#3037db",
+      "statusBarItem.remoteForeground": "#e7e7e7"
     },
     "workbench.sideBar.location": "left",
     "glassit.alpha": 245,

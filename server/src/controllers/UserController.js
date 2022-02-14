@@ -211,7 +211,6 @@ exports.update = async (req, res, next) => {
 
     if (newPassword) {
       if (newPassword !== repeatPassword) {
-        console.log('passou aqui');
         return res.status(400).json('As senhas são diferentes.');
       }
       hashedPassword = await hashPassword(newPassword);

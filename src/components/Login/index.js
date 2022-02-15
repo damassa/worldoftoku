@@ -27,7 +27,9 @@ function Login() {
         const token = response.data.token;
         const user = response.data.data;
         dispatch(AppActions.openSnackbar(`Bem vindo, ${user.name}`, 'success'));
-        dispatch(setUserOnStore(token, user.name, user.email, user.id));
+        dispatch(
+          setUserOnStore(token, user.name, user.email, user.id, user.favorites),
+        );
         localStorage.setItem('token', token);
         history.push('/');
       })

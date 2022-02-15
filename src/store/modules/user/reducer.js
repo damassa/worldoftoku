@@ -5,6 +5,7 @@ const initialState = {
   name: '',
   id: null,
   email: '',
+  favorites: [],
 };
 
 export default function user(state = initialState, action) {
@@ -15,6 +16,7 @@ export default function user(state = initialState, action) {
         name: action.name,
         email: action.email,
         id: action.id,
+        favorites: action.favorites,
       };
 
     case '@user/LOGOUT':
@@ -24,6 +26,11 @@ export default function user(state = initialState, action) {
       return produce(state, (draft) => {
         draft.email = action.email;
         draft.name = action.name;
+      });
+
+    case '@user/SET_FAVORITES':
+      return produce(state, (draft) => {
+        draft.favorites = action.favorites;
       });
 
     default:

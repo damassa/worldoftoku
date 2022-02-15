@@ -147,6 +147,7 @@ exports.login = async (req, res, next) => {
         email: user.email,
         role: user.role,
         name: user.name,
+        favorites: user.favorites,
       },
       token,
     });

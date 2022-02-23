@@ -1,0 +1,57 @@
+.homeContainer {
+  background-color: $secondary;
+  padding: 20px 0 50px 0;
+}
+
+.homeContent {
+  p {
+    font-size: 20px;
+  }
+
+  button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    border: none;
+    background-color: $purpleButton;
+    transition: 0.2s;
+    color: $terciary;
+  }
+}
+
+.homeImage {
+  display: flex;
+  justify-content: space-evenly;
+
+  img {
+    width: 70%;
+  }
+}
+
+.homeTitle {
+  padding: 60px 0 20px 0;
+}
+
+@media screen and (max-width: $sm) {
+  .homeContent {
+    flex-direction: column-reverse;
+  }
+
+  .homeContainerLeft {
+    h1,
+    p {
+      text-align: center;
+    }
+  }
+
+  .homeButton {
+    justify-content: center;
+  }
+
+  .homeImage {
+    img {
+      width: 50%;
+    }
+  }
+}

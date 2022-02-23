@@ -1,0 +1,56 @@
+.searchContainer {
+  padding: 20px 0 70px 0;
+  background-color: $secondary;
+}
+.listSeries {
+  position: relative;
+  h1 {
+    margin: 0 0 14px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+.searchCardContainer {
+  margin: 20px 0;
+}
+.searchCard {
+  width: 200px;
+  height: 300px;
+  position: relative;
+  border: none;
+  outline: none;
+  background: none;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+.bottomSerieName {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 75px;
+  left: 0;
+  bottom: -5px;
+  opacity: 0;
+  background: linear-gradient(
+    360deg,
+    rgb(18, 18, 18) 0%,
+    rgba(18, 18, 18, 0.81) 70%,
+    rgba(18, 18, 18, 0) 100%
+  );
+  transition: all 0.25s ease 0s;
+
+  span {
+    max-width: 80%;
+    padding-top: 10px;
+    color: rgb(232, 231, 220);
+    text-align: center;
+    font-size: 14px;
+  }
+}

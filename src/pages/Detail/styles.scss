@@ -1,0 +1,92 @@
+.detailWrapper {
+  padding: 20px 0 70px 0;
+}
+
+.detailContent {
+}
+
+.detailImage {
+  img {
+    max-width: 100%;
+    max-height: 300px;
+  }
+}
+
+.serieDetail {
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: normal;
+  }
+
+  h4 {
+    font-size: 14px;
+    font-weight: normal;
+  }
+}
+
+.categoryTag {
+  height: 50px;
+  display: flex;
+  flex-flow: row wrap;
+
+  div {
+    margin-right: 5px;
+    cursor: pointer;
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: $purpleButton;
+    color: $terciary;
+    font-size: 12px;
+    height: min-content;
+  }
+
+  button {
+    color: $terciary;
+    border: none;
+    padding: 10px 10px;
+    font-size: 12px;
+    border-radius: 10px;
+    background-color: $purpleButton;
+    height: min-content;
+  }
+}
+
+.seriePlot {
+  min-height: 120px;
+  padding: 0 0 30px 0;
+}
+
+.openingVideo {
+  width: 100%;
+}
+
+@media screen and (max-width: $md) {
+  .detailWrapper,
+  .detailImage {
+    justify-content: center;
+  }
+
+  .serieDetail {
+    text-align: center;
+  }
+
+  .categoryTag {
+    justify-content: space-evenly;
+  }
+}
+
+@media screen and (max-width: $sm) {
+  .seriePlot {
+    h2 {
+      text-align: center;
+    }
+
+    p {
+      text-align: justify;
+    }
+  }
+}

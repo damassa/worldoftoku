@@ -1,0 +1,33 @@
+.registerContainer {
+  padding: 20px 0 70px 0;
+}
+.registerTitle {
+  h1 {
+    text-align: center;
+  }
+}
+.inputWrapper {
+  max-width: 320px;
+}
+.input {
+  margin-top: 10px;
+  width: 100%;
+}
+.registerFormButton {
+  display: flex;
+  justify-content: center;
+  button {
+    padding: 10px 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    border: none;
+    background-color: $purpleButton;
+    transition: 0.2s;
+    color: $terciary;
+  }
+  button:hover {
+    transition: 0.2s;
+    background-color: $purpleHover;
+  }
+}

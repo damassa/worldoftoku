@@ -1,0 +1,17 @@
+html,
+body,
+root {
+  top: 0;
+  margin: 0;
+  left: 0;
+  padding: 0;
+  background-color: $primary;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  flex-wrap: no-wrap;
+  padding-bottom: 120px;
+}

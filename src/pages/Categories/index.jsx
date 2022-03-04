@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 import { Grid } from '@material-ui/core';
-import Carousel from '../../components/carousel';
+import Carousel from '../../components/Carousel';
 
 const Categories = () => {
   const [superSentai, setSuperSentai] = useState([]);

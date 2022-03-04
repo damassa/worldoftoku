@@ -1,0 +1,14 @@
+.listCards {
+  position: relative;
+
+  h1 {
+    margin: 0 0 14px;
+    color: $primary;
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  .cardContainer {
+    margin: 10px 0;
+  }
+}

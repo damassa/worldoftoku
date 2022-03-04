@@ -9,7 +9,7 @@ import * as AppActions from './store/modules/app/actions.js';
 import { setUserOnStore } from './store/modules/user/actions.js';
 import Alert from '@material-ui/lab/Alert';
 
-// import './styles/app.scss';
+import './styles/app.scss';
 
 function App() {
   const dispatch = useDispatch();

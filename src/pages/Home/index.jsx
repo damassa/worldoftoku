@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import { Grid } from '@material-ui/core';
-import Carousel from '../../components/carousel';
+import Carousel from '../../components/Carousel';
 import Image from '../../assets/undraw_horror_movie_3988.svg';
 
 const Home = () => {

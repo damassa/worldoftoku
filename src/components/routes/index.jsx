@@ -6,9 +6,9 @@ import Categories from '../../pages/Categories';
 import Detail from '../../pages/Detail';
 import EditUser from '../../pages/EditUser';
 import Favorites from '../../pages/Favorites';
-import Footer from '../footer';
+import Footer from '../Footer';
 import ForgotPassword from '../../pages/ForgotPassword';
-import Header from '../header';
+import Navbar from '../Navbar';
 import Home from '../../pages/Home';
 import Login from '../Login';
 import Register from '../../pages/Register';
@@ -40,7 +40,7 @@ const Routes = () => (
       <Route path="/forgotPassword" exact component={ForgotPassword} />
       <Route path="/resetPassword/:token" exact component={ResetPassword} />
       <>
-        <Header />
+        <Navbar />
         <div className="wrapper">
           <PrivateRoute path="/" exact component={Home} />
           <PrivateRoute path="/detail/:id" exact component={Detail} />

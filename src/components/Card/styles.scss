@@ -1,0 +1,46 @@
+.card {
+  position: relative;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: none;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.cardName {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  left: 0;
+  background: linear-gradient(
+    360deg,
+    #121212 0%,
+    rgba(18, 18, 18, 0.81) 70%,
+    rgba(18, 18, 18, 0) 100%
+  );
+  opacity: 0;
+  transition: 0.2s;
+
+  span {
+    max-width: 80%;
+    padding-top: 10px;
+    color: $primary;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  &:hover {
+    .cardName {
+      opacity: 1;
+    }
+  }
+}

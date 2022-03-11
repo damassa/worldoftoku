@@ -42,8 +42,8 @@ function Login() {
   };
 
   return (
-    <Grid container className="loginWrapper" justify="center">
-      <Grid container justify="center">
+    <Grid container className="loginWrapper" justifyContent="center">
+      <Grid container justifyContent="center">
         <Grid item className="loginContainer">
           <h1 className="loginTitle">Login</h1>
           <form onSubmit={handleSubmit(handleLogin)}>
@@ -85,7 +85,7 @@ function Login() {
               />
             </Grid>
             <Grid item xs={12}>
-              <Grid container justify="center" spacing={2}>
+              <Grid container justifyContent="center" spacing={2}>
                 <Grid item xs={12} className="loginFormButton">
                   <button fullwidth="true" disabled={false}>
                     Entrar
@@ -94,7 +94,7 @@ function Login() {
               </Grid>
             </Grid>
             <Grid item xs={12} className="forgotPassword">
-              <Grid container justify="center">
+              <Grid container justifyContent="center">
                 <Link to="/forgotPassword">
                   <span>Esqueceu sua senha?</span>
                 </Link>

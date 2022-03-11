@@ -34,15 +34,15 @@ function Register() {
   };
 
   return (
-    <Grid container className="registerContainer" justify="center">
+    <Grid container className="registerContainer" justifyContent="center">
       <Grid item xs={10}>
-        <Grid container justify="center">
+        <Grid container justifyContent="center">
           <Grid item xs={12} className="registerTitle">
             <h1>Registre-se!</h1>
           </Grid>
           <Grid item xs={12} className="inputWrapper">
             <form onSubmit={handleSubmit(sendRequest)}>
-              <Grid container justify="center">
+              <Grid container justifyContent="center">
                 <Grid item xs={12}>
                   <TextField
                     {...register('name', {
@@ -100,7 +100,7 @@ function Register() {
                     type="password"
                   />
                 </Grid>
-                <Grid container spacing={3} justify="flex-start">
+                <Grid container spacing={3} justifyContent="flex-start">
                   <Grid className="registerFormButton" item xs={12}>
                     <button type="submit">Registrar</button>
                   </Grid>

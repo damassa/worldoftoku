@@ -80,7 +80,7 @@ const Carousel = ({ data }) => {
   return (
     <Slider {...settings}>
       {data.map((serie) => (
-        <Grid key={serie._id} container justify="center">
+        <Grid key={serie._id} container justifyContent="center">
           <Link to={`/detail/${serie._id}`}>
             <Grid item xs={12} className="card">
               <img src={serie.image} alt="Serie" title={serie.name} />

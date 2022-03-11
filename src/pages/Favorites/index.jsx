@@ -17,9 +17,9 @@ const Favorites = () => {
   }, []);
 
   return (
-    <Grid container justify="center">
+    <Grid container justifyContent="center">
       <Grid item xs={10}>
-        <Grid container justify="space-between">
+        <Grid container justifyContent="space-between">
           {data.map((serie) => (
             <Grid item key={serie._id}>
               <Link to={`/detail/${serie._id}`}>

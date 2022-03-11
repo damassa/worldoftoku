@@ -19,12 +19,12 @@ const Search = () => {
   }, [name]);
 
   return (
-    <Grid container className="searchContainer" justify="center">
+    <Grid container className="searchContainer" justifyContent="center">
       <Grid item xs={10}>
         <Grid item xs={12}>
           <h2>Resultados para: {name}</h2>
         </Grid>
-        <Grid container justify="space-between">
+        <Grid container justifyContent="space-between">
           {data.map((serie) => (
             <Grid key={serie._id} item className="listSeries">
               <Link to={`/detail/${serie._id}`}>

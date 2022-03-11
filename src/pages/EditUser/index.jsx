@@ -37,9 +37,9 @@ function EditUser() {
   };
 
   return (
-    <Grid container className="userWrapper" justify="center">
+    <Grid container className="userWrapper" justifyContent="center">
       <Grid item xs={10}>
-        <Grid container justify="center">
+        <Grid container justifyContent="center">
           <Grid item xs={12} className="userTitle">
             <h1>Altere dados da sua conta!</h1>
           </Grid>
@@ -134,7 +134,7 @@ function EditUser() {
                     className="input"
                   />
                 </Grid>
-                <Grid container spacing={3} justify="flex-start">
+                <Grid container spacing={3} justifyContent="flex-start">
                   <Grid className="formButton" item xs={12}>
                     <button fullwidth="true" type="submit">
                       Alterar

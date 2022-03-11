@@ -1,26 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { Search as SearchIcon } from '@material-ui/icons';
 import { clearUserOnStore } from '../../store/modules/user/actions';
 import { OutlinedInput, InputAdornment } from '@material-ui/core';
-import ArrowDropdown from '@material-ui/icons/ArrowDropDown';
 
 export default function Header() {
-  const [menu, setMenu] = useState(false);
-  const [hold, setHold] = useState(false);
+  const [open, setOpen] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
-
-  let y = window.positionY;
-
-  const closeOnClick = () => {
-    setMenu(false);
-  };
-
-  useEffect(() => {
-    y > 0 ? setHold(true) : setHold(false);
-  }, [y, hold]);
 
   const handleLogout = () => {
     dispatch(clearUserOnStore());
@@ -69,12 +57,32 @@ export default function Header() {
             />
           </form>
         </div>
-        <div className="mobile" onClick={() => setMenu(!menu)} />
-        <div className="menu" onClick={closeOnClick} open={menu}>
-          <Link to="/categories">Categorias</Link>
-          <Link to="/favorites">Minha lista</Link>
-          <Link to="/editProfile">Minha conta</Link>
-          <button className="logoutBtn" onClick={handleLogout}>
+        <button
+          className="hamburger"
+          onClick={() => setOpen(!open)}
+          type="button"
+        >
+          <div className="bar1"></div>
+          <div className="bar2"></div>
+          <div className="bar3"></div>
+        </button>
+        <div className={`menu ${open ? 'menu-open' : ''}`}>
+          <div className="menuItem">
+            <Link className="menuLink" to="/categories">
+              Categorias
+            </Link>
+          </div>
+          <div className="menuItem">
+            <Link className="menuLink" to="/favorites">
+              Minha lista
+            </Link>
+          </div>
+          <div className="menuItem">
+            <Link className="menuLink" to="/editProfile">
+              Minha conta
+            </Link>
+          </div>
+          <button className="btn" onClick={handleLogout}>
             Sair
           </button>
         </div>

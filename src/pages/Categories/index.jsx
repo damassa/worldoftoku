@@ -56,7 +56,7 @@ const Categories = () => {
   return (
     <Grid container className="homeContainer">
       <Grid item xs={12}>
-        <Grid container justify="center">
+        <Grid container justifyContent="center">
           <Grid item xs={10}>
             <Grid container className="homeContent">
               <Grid item xs={12}>

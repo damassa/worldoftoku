@@ -20,7 +20,7 @@ const Home = () => {
   return (
     <Grid container className="homeContainer">
       <Grid item xs={12}>
-        <Grid container justify="center">
+        <Grid container justifyContent="center">
           <Grid item xs={10}>
             <Grid container className="homeContent">
               <Grid item md={7} sm={12}>
@@ -35,7 +35,7 @@ const Home = () => {
                       Tokusatsu para você.
                     </p>
                     <Grid container className="homeButton">
-                      <button>Todas as séries</button>
+                      <button className="btn">Todas as séries</button>
                     </Grid>
                   </Grid>
                 </Grid>

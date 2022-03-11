@@ -36,7 +36,7 @@ const Detail = () => {
   return (
     <Grid container className="detailWrapper">
       <Grid item xs={12}>
-        <Grid container justify="center">
+        <Grid container justifyContent="center">
           <Grid item xs={10}>
             <Grid container className="detailContent">
               <Grid item md={4}>

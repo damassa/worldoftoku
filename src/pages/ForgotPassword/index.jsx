@@ -29,8 +29,8 @@ function ForgotPassword() {
   };
 
   return (
-    <Grid container justify="center" className="loginWrapper">
-      <Grid container justify="center">
+    <Grid container justifyContent="center" className="loginWrapper">
+      <Grid container justifyContent="center">
         <Grid item className="loginContainer">
           <h1 className="loginTitle">Esqueceu sua senha?</h1>
           <form onSubmit={handleSubmit(handleForgotPassword)}>
@@ -55,14 +55,14 @@ function ForgotPassword() {
               />
             </Grid>
             <Grid item xs={12}>
-              <Grid container justify="center" spacing={2}>
+              <Grid container justifyContent="center" spacing={2}>
                 <Grid item xs={12} className="loginFormButton">
                   <button fullwidth="true" disabled={false}>
                     Enviar
                   </button>
                 </Grid>
                 <Grid item xs={12} className="forgotPassword">
-                  <Grid container justify="center">
+                  <Grid container justifyContent="center">
                     <Link to="/">
                       <span>Voltar ao início</span>
                     </Link>

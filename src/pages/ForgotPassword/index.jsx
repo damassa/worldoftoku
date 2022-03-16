@@ -29,9 +29,9 @@ function ForgotPassword() {
   };
 
   return (
-    <Grid container justifyContent="center" className="loginWrapper">
+    <Grid container justifyContent="center" className="notLoggedWrapper">
       <Grid container justifyContent="center">
-        <Grid item className="loginContainer">
+        <Grid item className="notLoggedContainer">
           <h1 className="loginTitle">Esqueceu sua senha?</h1>
           <form onSubmit={handleSubmit(handleForgotPassword)}>
             <Grid item xs={12} className="loginForm">

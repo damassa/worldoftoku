@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import api from '../../services/api';
 import { Grid } from '@material-ui/core';
 import Carousel from '../../components/Carousel';
@@ -54,11 +54,11 @@ const Categories = () => {
   }, []);
 
   return (
-    <Grid container className="homeContainer">
+    <Grid container className="container">
       <Grid item xs={12}>
         <Grid container justifyContent="center">
           <Grid item xs={10}>
-            <Grid container className="homeContent">
+            <Grid container>
               <Grid item xs={12}>
                 <h1>Super Sentai</h1>
                 {superSentai ? <Carousel data={superSentai} /> : null}

@@ -12,7 +12,7 @@ routes.get(
   UserController.allowIfLoggedIn,
   SerieController.listFavorites,
 );
-routes.post('/series', SerieController.search);
+routes.post('/search', SerieController.search);
 routes.get('/orderByYear', SerieController.orderByYear);
 routes.post('/series/categories', SerieController.getSerieByCategory);
 routes.post('/series', SerieController.store);

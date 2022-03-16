@@ -64,13 +64,9 @@
     }
 
     @media screen and (max-width: $md) {
-      .mobile {
-        display: flex;
-        transform: translate(-100%, 75%);
-        font-size: 1.5rem;
-        cursor: pointer;
+      .hamburger {
+        display: block;
       }
-
       .menu {
         display: none;
         position: fixed;

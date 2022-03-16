@@ -37,7 +37,7 @@ function EditUser() {
   };
 
   return (
-    <Grid container className="userWrapper" justifyContent="center">
+    <Grid container className="loggedContainer" justifyContent="center">
       <Grid item xs={10}>
         <Grid container justifyContent="center">
           <Grid item xs={12} className="userTitle">
@@ -135,7 +135,7 @@ function EditUser() {
                   />
                 </Grid>
                 <Grid container spacing={3} justifyContent="flex-start">
-                  <Grid className="formButton" item xs={12}>
+                  <Grid className="editFormButton" item xs={12}>
                     <button fullwidth="true" type="submit">
                       Alterar
                     </button>

@@ -18,11 +18,11 @@ const Home = () => {
   }, []);
 
   return (
-    <Grid container className="homeContainer">
+    <Grid container className="loggedContainer">
       <Grid item xs={12}>
         <Grid container justifyContent="center">
           <Grid item xs={10}>
-            <Grid container className="homeContent">
+            <Grid container>
               <Grid item md={7} sm={12}>
                 <Grid container className="homeContainerLeft">
                   <Grid item xs={12}>

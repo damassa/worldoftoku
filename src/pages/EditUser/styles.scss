@@ -1,40 +1,6 @@
-.userWrapper {
-  padding: 20px 0 50px 0;
-}
-
-.inputWrapper {
-  max-width: 320px;
-}
-
 .userTitle {
   h1 {
     text-align: center;
-  }
-}
-
-.input {
-  margin-top: 10px;
-  width: 100%;
-}
-
-.formButton {
-  display: flex;
-  justify-content: center;
-
-  button {
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 20px;
-    border: none;
-    background-color: $purpleButton;
-    transition: 0.2s;
-    color: $terciary;
-  }
-
-  button:hover {
-    background-color: $purpleHover;
-    transition: 0.2s;
   }
 }
 

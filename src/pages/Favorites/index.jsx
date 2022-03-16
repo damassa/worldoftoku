@@ -17,8 +17,11 @@ const Favorites = () => {
   }, []);
 
   return (
-    <Grid container justifyContent="center">
+    <Grid container justifyContent="center" className="container">
       <Grid item xs={10}>
+        <Grid item xs={12}>
+          <h2>Minha lista</h2>
+        </Grid>
         <Grid container justifyContent="space-between">
           {data.map((serie) => (
             <Grid item key={serie._id}>

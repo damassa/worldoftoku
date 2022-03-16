@@ -39,6 +39,7 @@ const Routes = () => (
       <Route path="/login" exact component={Login} />
       <Route path="/forgotPassword" exact component={ForgotPassword} />
       <Route path="/resetPassword/:token" exact component={ResetPassword} />
+      <Route path="/register" exact component={Register} />
       <>
         <Navbar />
         <div className="wrapper">
@@ -48,7 +49,6 @@ const Routes = () => (
           <PrivateRoute path="/search/:name" exact component={Search} />
           <PrivateRoute path="/categories" exact component={Categories} />
           <PrivateRoute path="/favorites" exact component={Favorites} />
-          <Route path="/register" exact component={Register} />
         </div>
         <Footer />
       </>

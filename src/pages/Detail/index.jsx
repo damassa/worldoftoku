@@ -34,11 +34,11 @@ const Detail = () => {
   }
 
   return (
-    <Grid container className="detailWrapper">
+    <Grid container className="container">
       <Grid item xs={12}>
         <Grid container justifyContent="center">
           <Grid item xs={10}>
-            <Grid container className="detailContent">
+            <Grid container>
               <Grid item md={4}>
                 <Grid container className="detailImage">
                   <img src={data.image} alt="Detalhe" title={data.name} />
@@ -57,7 +57,7 @@ const Detail = () => {
                 </Grid>
                 <Grid container>
                   <Grid item xs={12} className="categoryTag">
-                    <button onClick={handleFavorite}>
+                    <button onClick={handleFavorite} className="buttonFavorite">
                       {isFavorite()
                         ? 'Remove from favorites'
                         : 'Add to favorites'}

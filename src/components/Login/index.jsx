@@ -42,9 +42,9 @@ function Login() {
   };
 
   return (
-    <Grid container className="loginWrapper" justifyContent="center">
+    <Grid container className="notLoggedWrapper" justifyContent="center">
       <Grid container justifyContent="center">
-        <Grid item className="loginContainer">
+        <Grid item className="notLoggedContainer">
           <h1 className="loginTitle">Login</h1>
           <form onSubmit={handleSubmit(handleLogin)}>
             <Grid item xs={12} className="loginForm">
@@ -56,7 +56,6 @@ function Login() {
                   },
                 })}
                 inputProps={{ minlenght: 25 }}
-                className="input"
                 variant="outlined"
                 required
                 error={!!errors.email}
@@ -72,7 +71,6 @@ function Login() {
                 {...register('password', {
                   required: 'Este campo é obrigatório',
                 })}
-                className="input"
                 variant="outlined"
                 required
                 error={!!errors.password}

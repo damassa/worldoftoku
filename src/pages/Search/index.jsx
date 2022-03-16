@@ -9,7 +9,7 @@ const Search = () => {
 
   useEffect(() => {
     api
-      .post('series', { name })
+      .post('search', { name })
       .then((response) => {
         setData(response.data);
       })
@@ -19,7 +19,7 @@ const Search = () => {
   }, [name]);
 
   return (
-    <Grid container className="searchContainer" justifyContent="center">
+    <Grid container className="categoryContainer" justifyContent="center">
       <Grid item xs={10}>
         <Grid item xs={12}>
           <h2>Resultados para: {name}</h2>
